@@ -1,0 +1,59 @@
+jardinage
+planter - semer - terreau - pots - désherber - jardin - fruits et légumes
+
+météo
+nuages - brouillard - soleil - pluie - neige - temps
+
+athletisme
+400 m - lancer du poids - saut en longueur - saut en hauteur - 100 m
+
+chaussures
+bottes - mocassins - sandales - baskets - espadrilles - escarpins - chausson - claquettes - pantoufle - pair
+
+bricolage
+tournevis – clouer - scier – marteau - percer - outil - fabriquer - répararer - rafistoler
+
+train
+guichet - wagon - motrice - rail – contrôleur - siège - locomotive - métro - cheminot - fourgon - dérailler - voyage
+
+nature
+arbres, fleurs, forêt, mer, animaux, plantes, lac, plaines, montagne
+
+télévision
+présentateur, informations, programme, publicité, séries, écran, émission, reportage, divertissement, feuilleton, 
+
+cyclisme
+roue, cadre, course, vélo, selle, frein, vélodrome, rouler, pédale, sport, deux-roues, cyclable, tricycle, 
+
+patinage
+patin, patinoire, glace, gant, froid, glissade, bonnet, hockey sur glace, artistique, sport, danse, figure
+
+pays
+france, angleterre, allemagne, italie, japon, espagne, états-unis, suisse, chine, canada, russie, égypte, maroc, inde, grèce
+
+laitage
+camembert, yahourt, lait, crème fraiche, fromage, chantilly, maroilles, beurre, crème glacée
+
+transport aérien (cm2)
+hélicoptère, avion, planeur, dirigeable, fusée, montgolfière
+
+fournitures scolaire
+cahier, stylo, crayon, feutres, craies, classeur, feuille, règle, colle, gomme, taille-crayon, compas, calculatrice, trousse, équerre
+
+autoroute (cm2)
+sortie, aire de repos, bande d'arrêt d'urgence, station-service, péage, voiture, bouchon, route
+
+école
+cour, couloir, toilettes, classe, tableau, chaise, élève, bureau, TBI, ardoise, enseignant, professeur
+
+oiseaux
+merle, aigle, perdrix, rouge-gorge, rossignol, pigeon, cygne, canard, pie, faucon, hirondelle, pivert, hibou
+
+voiture
+volant, frein, coffre, portière, essuie-glace, pare-brise, rétroviseur, boîte à gants, airbag, pédale, moteur, levier de vitesse, climatisation, klaxon
+
+plage
+parasol, sable, bouée, mer, soleil, océan, glace, jet-ski, planche à voile, surf, maillot de bain, serviette, château de sable
+
+corps humain
+estomac, foie, rein, coeur, intestin, poumon, bras, cheville, langue, tête, pied, genou, poignet, main, doigt, cheveux, 
