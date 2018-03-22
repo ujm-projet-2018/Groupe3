@@ -56,4 +56,4 @@ plage
 parasol, sable, bouée, mer, soleil, océan, glace, jet-ski, planche à voile, surf, maillot de bain, serviette, château de sable
 
 corps humain
-estomac, foie, rein, coeur, intestin, poumon, bras, cheville, langue, tête, pied, genou, poignet, main, doigt, cheveux, 
+estomac, foie, rein, coeur, intestin, poumon, bras, cheville, langue, tête, pied, genou, poignet, main, doigt, cheveux
