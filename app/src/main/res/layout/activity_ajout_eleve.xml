@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EBE7DE"
+
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Connexion"
+        android:textColor="#009BCB"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        />
+
+    <EditText
+        android:id="@+id/nomEleve"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="Nom de l'élève"
+        android:textSize="25dp"
+        />
+
+    <EditText
+        android:id="@+id/prenomEleve"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="Prénom de l'élève "
+        android:textSize="25dp"
+        />
+
+    <Button
+        android:id="@+id/AjouterEleve"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Ajouter"
+        android:textColor="#EBE7DE"
+        android:textStyle="bold"
+        android:background="#009BCB"
+        />
+
+</LinearLayout>
