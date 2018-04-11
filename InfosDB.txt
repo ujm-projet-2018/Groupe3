@@ -1,3 +1,0 @@
-
-url : sql11.freesqldatabase.com
-port : 3306
