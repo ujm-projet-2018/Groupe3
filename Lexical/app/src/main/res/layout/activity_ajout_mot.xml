@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:text="Inscription"
+        android:text="Ajouter un mot"
         android:textColor="#009BCB"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -22,50 +22,49 @@
         />
 
     <EditText
-        android:id="@+id/identifiantProf"
+        android:id="@+id/motAjout"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:hint="Identifiant"
-
+        android:hint="Mot"
         android:textSize="25dp"
+        android:maxLines="1"
         />
 
     <EditText
-        android:id="@+id/passProf"
+        android:id="@+id/champAssoc"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:hint="Mot de passe"
-        android:textSize="25dp"
+        android:hint="Champ lexical associé"
+        android:textSize="23dp"
         android:maxLines="1"
-        android:inputType="textPassword"
         />
-    <EditText
-        android:id="@+id/passProfConfirm"
+
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:hint="Mot de passe"
-        android:textSize="25dp"
-        android:maxLines="1"
-        android:inputType="textPassword"
-        />
+        android:entries="@array/classe_choix"
+        android:prompt="@string/classe" />
 
     <Button
-        android:id="@+id/seConnecter"
+        android:id="@+id/ajouterMot"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:text="Valider l'inscription"
+        android:text="Ajouter"
         android:textColor="#EBE7DE"
         android:textStyle="bold"
         android:background="#009BCB"
+        android:onClick="onValidate"
         />
+
 
 
 

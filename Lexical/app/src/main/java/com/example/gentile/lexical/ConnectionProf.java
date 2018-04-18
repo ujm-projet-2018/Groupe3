@@ -1,10 +1,13 @@
 package com.example.gentile.lexical;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +28,11 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ConnectionProf extends AppCompatActivity {
-    String urlCoProf="http://lexical.hopto.org/lexical/connect.php";
+    String urlCoProf = "http://lexical.hopto.org/lexical/connect.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_prof);
 
@@ -46,7 +50,7 @@ public class ConnectionProf extends AppCompatActivity {
                 EditText pass = (EditText) findViewById(R.id.passProf);
                 String strId = identifiant.toString();
                 String strPass = pass.toString();
-                if ( identifiant.getText().toString().equals("") || pass.getText().toString().equals("") ) {
+                if (identifiant.getText().toString().equals("") || pass.getText().toString().equals("")) {
                     Toast.makeText(ConnectionProf.this,
                             "Identifiant ou mot de passe non indiqué.",
                             Toast.LENGTH_SHORT).show();
@@ -82,17 +86,16 @@ public class ConnectionProf extends AppCompatActivity {
                             final String resp = response.body().string().toString();
                             runOnUiThread(new Runnable() {
                                 @Override
-                                public void run(){
+                                public void run() {
                                     try {
                                         System.out.println(resp);
                                         JSONObject jsonObj = new JSONObject(resp);
                                         int success = jsonObj.getInt("success");
                                         System.out.println(success);
-                                        if(success == 1){
+                                        if (success == 1) {
                                             Intent intent = new Intent(ConnectionProf.this, MainProf.class);
                                             startActivity(intent);
-                                        }
-                                        else{
+                                        } else {
                                             Toast.makeText(ConnectionProf.this,
                                                     "Identifiant ou mot de passe incorrects.",
                                                     Toast.LENGTH_SHORT).show();
@@ -118,13 +121,5 @@ public class ConnectionProf extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
-
-
-
-
-
-
 }

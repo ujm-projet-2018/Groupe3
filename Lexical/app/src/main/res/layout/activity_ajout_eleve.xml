@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:text="Connexion"
+        android:text="Nouvel élève"
         android:textColor="#009BCB"
         android:textSize="30dp"
         android:textStyle="bold"
