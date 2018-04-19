@@ -92,6 +92,15 @@ public class AjoutMot extends AppCompatActivity {
                                             int success = jsonObj.getInt("success");
                                             System.out.println(success);
                                             if (success == 1) {
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(AjoutMot.this,
+                                                                "Mot ajouté",
+                                                                Toast.LENGTH_SHORT).show();
+                                                        return;
+                                                    }
+                                                });
                                                 //le champs lex indiqué existe, si le mot nexiste pas
                                                 // il faut ajouter le mot et l'associer au champ dans la la table
                                                 //Appartient. sinon on recupre lid du mot et on l'associe au champ
