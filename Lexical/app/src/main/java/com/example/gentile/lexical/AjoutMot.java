@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ import okhttp3.Response;
 
 public class AjoutMot extends AppCompatActivity {
     String urlTestChamp = "http://lexical.hopto.org/lexical/test_champ.php";
+    String urlAjoutChamp = "http://lexical.hopto.org/lexical/ajout_champ.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -54,7 +56,6 @@ public class AjoutMot extends AppCompatActivity {
                 ajouter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        System.out.println(classe.getSelectedItem().toString());
                         OkHttpClient client = new OkHttpClient();
                         RequestBody formBody = new FormBody.Builder()
                                 .add("champ", champ.getText().toString())
@@ -101,13 +102,105 @@ public class AjoutMot extends AppCompatActivity {
                                                         return;
                                                     }
                                                 });
-                                                //le champs lex indiqué existe, si le mot nexiste pas
-                                                // il faut ajouter le mot et l'associer au champ dans la la table
-                                                //Appartient. sinon on recupre lid du mot et on l'associe au champ
                                             }
-                                            if(success == 2) {
-                                                //le champ lex n'existe pas on demande a l'user si il veut l'ajouter
-                                                //puis on refait l'operation precedente.
+                                            if(success == 0) {
+                                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(AjoutMot.this);
+                                                alertDialog.setTitle("Créer le champ lexical ?");
+                                                alertDialog.setMessage("Le champ lexical indiqué n'existe pas voulez vous l'ajouter ?");
+
+                                                alertDialog.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        OkHttpClient client2 = new OkHttpClient();
+                                                        RequestBody formBody2 = new FormBody.Builder()
+                                                                .add("champ", champ.getText().toString())
+                                                                .add("mot", mot.getText().toString())
+                                                                .add("classe", classe.getSelectedItem().toString())
+                                                                .build();
+                                                        Request request = new Request.Builder()
+                                                                .url(urlAjoutChamp)
+                                                                .post(formBody2)
+                                                                .build();
+                                                        client2.newCall(request).enqueue(new Callback() {
+                                                            @Override
+                                                            public void onFailure(Call call, IOException e) {
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        Toast.makeText(AjoutMot.this,
+                                                                                "Connection au serveur impossible.",
+                                                                                Toast.LENGTH_SHORT).show();
+                                                                        return;
+                                                                    }
+                                                                });
+
+                                                            }
+
+                                                            @Override
+                                                            public void onResponse(Call call, Response response2) throws IOException {
+                                                                final String resp2 = response2.body().string().toString();
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        try {
+                                                                            System.out.println("lepoulet" + resp2);
+                                                                            JSONObject jsonObj2 = new JSONObject(resp2);
+                                                                            int success = jsonObj2.getInt("success");
+                                                                            System.out.println(success);
+                                                                            if (success == 1) {
+                                                                                runOnUiThread(new Runnable() {
+                                                                                    @Override
+                                                                                    public void run() {
+                                                                                        Toast.makeText(AjoutMot.this,
+                                                                                                "Mot et champ ajouté",
+                                                                                                Toast.LENGTH_SHORT).show();
+                                                                                        return;
+                                                                                    }
+                                                                                });
+                                                                            }
+                                                                            if (success == 0) {
+                                                                                runOnUiThread(new Runnable() {
+                                                                                    @Override
+                                                                                    public void run() {
+                                                                                        Toast.makeText(AjoutMot.this,
+                                                                                                "Mot et champ non ajouté",
+                                                                                                Toast.LENGTH_SHORT).show();
+                                                                                        return;
+                                                                                    }
+                                                                                });
+
+                                                                            }
+                                                                        } catch (JSONException e) {
+                                                                            e.printStackTrace();
+                                                                        }
+                                                                    }
+                                                                });
+                                                            }
+                                                        });
+
+                                                    }
+                                                });
+
+                                                alertDialog.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        Toast.makeText(AjoutMot.this,
+                                                                "Ajout annulé",
+                                                                Toast.LENGTH_SHORT).show();
+                                                        return;
+                                                    }
+                                                });
+
+                                                alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                                    @Override
+                                                    public void onCancel(DialogInterface dialogInterface) {
+                                                        Toast.makeText(AjoutMot.this,
+                                                                "Ajout annulé",
+                                                                Toast.LENGTH_SHORT).show();
+                                                        return;
+                                                    }
+                                                });
+                                                alertDialog.show();
                                             }
                                         } catch (Exception e) {
                                             e.printStackTrace();
