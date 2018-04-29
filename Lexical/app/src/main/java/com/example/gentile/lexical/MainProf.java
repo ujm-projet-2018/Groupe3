@@ -17,7 +17,6 @@ public class MainProf extends AppCompatActivity {
         setContentView(R.layout.activity_main_prof);
         Button addEleve = (Button) findViewById(R.id.AjoutEleve);
         Button addMot = (Button) findViewById(R.id.AjoutMot);
-        Button addChamp = (Button) findViewById(R.id.AjoutChamp);
         Button resultEleve = (Button) findViewById(R.id.StatEleve);
 
         addEleve.setOnClickListener(new View.OnClickListener(){
@@ -34,12 +33,6 @@ public class MainProf extends AppCompatActivity {
             }
         });
 
-        addChamp.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Intent appel = new Intent(MainProf.this, AjoutChamp.class);
-                startActivity(appel);
-            }
-        });
 
         resultEleve.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
