@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -55,6 +56,15 @@ public class exo1 extends AppCompatActivity {
         mot6 = (Button) findViewById(R.id.mot6);
         mot7 = (Button) findViewById(R.id.mot7);
         mot8 = (Button) findViewById(R.id.mot8);
+        final ArrayList<Button> listMot = new ArrayList<Button>();
+        listMot.add(mot1);
+        listMot.add(mot2);
+        listMot.add(mot3);
+        listMot.add(mot4);
+        listMot.add(mot5);
+        listMot.add(mot6);
+        listMot.add(mot7);
+        listMot.add(mot8);
 
         OkHttpClient client = new OkHttpClient();
         RequestBody formBody = new FormBody.Builder()
@@ -85,14 +95,16 @@ public class exo1 extends AppCompatActivity {
                             System.out.println(resp);
                             JSONObject jsonObj = new JSONObject(resp);
                             JSONObject champ_lex = jsonObj.getJSONObject("champ");
-                            for(int i=0;i<1;i++) {
-                                JSONObject Mot = jsonObj.getJSONObject("mot"+i);
-                                String nom_mot = Mot.getString("mot");
-                                System.out.println(nom_mot);
-                            }
                             int idChamp = champ_lex.getInt("id_champ");
                             String nomChamp = champ_lex.getString("nom_champ");
                             nom_champ.setText(nomChamp);
+                            for(int i=0;i<8;i++) {
+                                JSONObject Mot = jsonObj.getJSONObject("mot"+i);
+                                String nom_mot = Mot.getString("mot");
+                                listMot.get(i).setText(nom_mot);
+                                System.out.println(nom_mot);
+                            }
+
 
 
 
@@ -126,13 +138,14 @@ public class exo1 extends AppCompatActivity {
                     case DragEvent.ACTION_DRAG_ENTERED:
                         // Executed after the Drag Shadow enters the drop area
                         break;
-                    case DragEvent.ACTION_DROP: {
+                    case DragEvent.ACTION_DROP:
                         //Executed when user drops the data
+                        Button but = (Button) event.getLocalState();
+                        but.setVisibility(View.INVISIBLE);
                         return (true);
-                    }
-                    case DragEvent.ACTION_DRAG_ENDED: {
+
+                    case DragEvent.ACTION_DRAG_ENDED:
                         return (true);
-                    }
                     default:
                         break;
                 }
@@ -147,7 +160,6 @@ public class exo1 extends AppCompatActivity {
                 ClipData data = ClipData.newPlainText("", "");
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
-                view.setVisibility(View.INVISIBLE);
                 return true;
             } else {
                 return false;
