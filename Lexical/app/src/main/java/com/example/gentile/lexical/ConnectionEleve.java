@@ -85,7 +85,7 @@ public class ConnectionEleve extends AppCompatActivity {
                                         int success = jsonObj.getInt("success");
                                         System.out.println(success);
                                         if (success == 1) {
-                                            Intent intent = new Intent(ConnectionEleve.this, MainProf.class);
+                                            Intent intent = new Intent(ConnectionEleve.this, exo1.class);
                                             startActivity(intent);
                                         } else {
                                             Toast.makeText(ConnectionEleve.this,

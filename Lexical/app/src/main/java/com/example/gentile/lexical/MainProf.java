@@ -33,7 +33,6 @@ public class MainProf extends AppCompatActivity {
             }
         });
 
-
         resultEleve.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 Intent appel = new Intent(MainProf.this, StatEleve.class);

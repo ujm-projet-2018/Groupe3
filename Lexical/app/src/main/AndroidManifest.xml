@@ -23,9 +23,9 @@
         <activity android:name=".InscriptionProf" />
         <activity android:name=".MainProf" />
         <activity android:name=".AjoutEleve" />
-        <activity android:name=".AjoutChamp" />
         <activity android:name=".StatEleve" />
         <activity android:name=".AjoutMot" />
+        <activity android:name=".exo1"></activity>
     </application>
 
 </manifest>
