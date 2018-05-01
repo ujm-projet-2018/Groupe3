@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -83,9 +84,15 @@ public class exo1 extends AppCompatActivity {
                         try {
                             System.out.println(resp);
                             JSONObject jsonObj = new JSONObject(resp);
-                            String champ_lex = jsonObj.getString("champ");
-                            System.out.print(champ_lex);
-                            nom_champ.setText(champ_lex);
+                            JSONObject champ_lex = jsonObj.getJSONObject("champ");
+                            for(int i=0;i<1;i++) {
+                                JSONObject Mot = jsonObj.getJSONObject("mot"+i);
+                                String nom_mot = Mot.getString("mot");
+                                System.out.println(nom_mot);
+                            }
+                            int idChamp = champ_lex.getInt("id_champ");
+                            String nomChamp = champ_lex.getString("nom_champ");
+                            nom_champ.setText(nomChamp);
 
 
 
