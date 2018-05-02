@@ -25,7 +25,8 @@
         <activity android:name=".AjoutEleve" />
         <activity android:name=".StatEleve" />
         <activity android:name=".AjoutMot" />
-        <activity android:name=".exo1"></activity>
+        <activity android:name=".exo1" />
+        <activity android:name=".gameOverExo1"></activity>
     </application>
 
 </manifest>

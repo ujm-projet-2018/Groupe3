@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class exo1 extends AppCompatActivity {
     Button mot6;
     Button mot7;
     Button mot8;
+    public JSONObject jsonObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,17 +95,19 @@ public class exo1 extends AppCompatActivity {
                     public void run() {
                         try {
                             System.out.println(resp);
-                            JSONObject jsonObj = new JSONObject(resp);
-                            JSONObject champ_lex = jsonObj.getJSONObject("champ");
-                            int idChamp = champ_lex.getInt("id_champ");
-                            String nomChamp = champ_lex.getString("nom_champ");
-                            nom_champ.setText(nomChamp);
-                            for(int i=0;i<8;i++) {
-                                JSONObject Mot = jsonObj.getJSONObject("mot"+i);
-                                String nom_mot = Mot.getString("mot");
-                                listMot.get(i).setText(nom_mot);
-                                System.out.println(nom_mot);
+                            jsonObj = new JSONObject(resp);
+                            String champ_lex = jsonObj.getString("champ");
+                            nom_champ.setText(champ_lex);
+                            int place = (int) (Math.random()*7);
+                            //on met les bon mot dans la liste
+                            for(int i=0;i<7;i++) {
+                                String nom_mot = jsonObj.getString("mot"+i);
+                                listMot.get(place%8).setText(nom_mot);
+                                place++;
                             }
+                            String nom_mot = jsonObj.getString("intru");
+                            listMot.get(place%8).setText(nom_mot);
+
 
 
 
@@ -141,7 +145,20 @@ public class exo1 extends AppCompatActivity {
                     case DragEvent.ACTION_DROP:
                         //Executed when user drops the data
                         Button but = (Button) event.getLocalState();
-                        but.setVisibility(View.INVISIBLE);
+                        try {
+                            if(but.getText().equals(jsonObj.getString("mot0")) || but.getText().equals(jsonObj.getString("mot1")) || but.getText().equals(jsonObj.getString("mot2")) || but.getText().equals(jsonObj.getString("mot3")) || but.getText().equals(jsonObj.getString("mot4")) || but.getText().equals(jsonObj.getString("mot5")) || but.getText().equals(jsonObj.getString("mot6"))) {
+                                Toast.makeText(exo1.this,
+                                        "Super !",
+                                        Toast.LENGTH_SHORT).show();
+                                but.setVisibility(View.INVISIBLE);
+                            }
+                            if(but.getText().equals(jsonObj.getString("intru"))){
+                                Intent appel = new Intent(exo1.this, gameOverExo1.class);
+                                startActivity(appel);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         return (true);
 
                     case DragEvent.ACTION_DRAG_ENDED:
