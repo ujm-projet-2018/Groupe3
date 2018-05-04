@@ -96,9 +96,9 @@ public class exo2 extends AppCompatActivity {
                         try {
                             System.out.println(resp);
                             jsonObj = new JSONObject(resp);
-                            String champ_lex1 = jsonObj.getString("champ1");
+                            String champ_lex1 = jsonObj.getString("champ0");
                             nom_champ1.setText(champ_lex1);
-                            String champ_lex2 = jsonObj.getString("champ2");
+                            String champ_lex2 = jsonObj.getString("champ1");
                             nom_champ2.setText(champ_lex2);
                             int place = (int) (Math.random()*8);
                             //on met les bon mot dans la liste
@@ -193,6 +193,7 @@ public class exo2 extends AppCompatActivity {
                                 nbrMotPlace++;
                             }
                             else{
+                                but.setVisibility(View.INVISIBLE);
                                 erreur = true;
                             }
 

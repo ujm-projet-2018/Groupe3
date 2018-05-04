@@ -157,7 +157,7 @@ public class exo1 extends AppCompatActivity {
                                 but.setVisibility(View.INVISIBLE);
                                 nbrMotPlace++;
                             }
-                            if(but.getText().equals(jsonObj.getString("intru"))){
+                            if(but.getText().equals(jsonObj.getString("intru0")) || but.getText().equals(jsonObj.getString("intru1")) || but.getText().equals(jsonObj.getString("intru2"))){
                                 erreur = true;
                             }
                         } catch (JSONException e) {
