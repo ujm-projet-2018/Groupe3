@@ -42,6 +42,9 @@ public class exo1 extends AppCompatActivity {
     Button mot6;
     Button mot7;
     Button mot8;
+    Button valider;
+    int nbrMotPlace;
+    boolean erreur;
     public JSONObject jsonObj;
 
     @Override
@@ -58,6 +61,7 @@ public class exo1 extends AppCompatActivity {
         mot6 = (Button) findViewById(R.id.mot6);
         mot7 = (Button) findViewById(R.id.mot7);
         mot8 = (Button) findViewById(R.id.mot8);
+        valider = (Button) findViewById(R.id.valider);
         final ArrayList<Button> listMot = new ArrayList<Button>();
         listMot.add(mot1);
         listMot.add(mot2);
@@ -100,13 +104,16 @@ public class exo1 extends AppCompatActivity {
                             nom_champ.setText(champ_lex);
                             int place = (int) (Math.random()*7);
                             //on met les bon mot dans la liste
-                            for(int i=0;i<7;i++) {
+                            for(int i=0;i<5;i++) {
                                 String nom_mot = jsonObj.getString("mot"+i);
                                 listMot.get(place%8).setText(nom_mot);
                                 place++;
                             }
-                            String nom_mot = jsonObj.getString("intru");
-                            listMot.get(place%8).setText(nom_mot);
+                            for(int i=0;i<3;i++) {
+                                String nom_mot = jsonObj.getString("intru"+i);
+                                listMot.get(place % 8).setText(nom_mot);
+                                place++;
+                            }
 
 
 
@@ -147,14 +154,11 @@ public class exo1 extends AppCompatActivity {
                         Button but = (Button) event.getLocalState();
                         try {
                             if(but.getText().equals(jsonObj.getString("mot0")) || but.getText().equals(jsonObj.getString("mot1")) || but.getText().equals(jsonObj.getString("mot2")) || but.getText().equals(jsonObj.getString("mot3")) || but.getText().equals(jsonObj.getString("mot4")) || but.getText().equals(jsonObj.getString("mot5")) || but.getText().equals(jsonObj.getString("mot6"))) {
-                                Toast.makeText(exo1.this,
-                                        "Super !",
-                                        Toast.LENGTH_SHORT).show();
                                 but.setVisibility(View.INVISIBLE);
+                                nbrMotPlace++;
                             }
                             if(but.getText().equals(jsonObj.getString("intru"))){
-                                Intent appel = new Intent(exo1.this, gameOverExo1.class);
-                                startActivity(appel);
+                                erreur = true;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -167,6 +171,18 @@ public class exo1 extends AppCompatActivity {
                         break;
                 }
                 return true;
+            }
+        });
+
+        valider.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(!erreur && nbrMotPlace == 5){
+                    //gagner
+                }
+                else{
+                    Intent appel = new Intent(exo1.this, gameOverExo1.class);
+                    startActivity(appel);
+                }
             }
         });
     }
