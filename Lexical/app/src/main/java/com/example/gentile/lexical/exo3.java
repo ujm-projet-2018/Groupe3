@@ -139,12 +139,13 @@ public class exo3 extends AppCompatActivity {
                         //Executed when user drops the data
                         Button but = (Button) event.getLocalState();
                         if(but.getText().equals(listChamp.get(correct).getText())){
-                            but.setVisibility(View.INVISIBLE);
-                            if(reussi !=false)
-                                reussi = true;
+                            TextView champ = findViewById(R.id.champ);
+                            champ.setText(but.getText());
+                            reussi = true;
                         }
                         else{
-                            but.setVisibility(View.INVISIBLE);
+                            TextView champ = findViewById(R.id.champ);
+                            champ.setText(but.getText());
                             reussi = false;
                         }
                         return (true);
