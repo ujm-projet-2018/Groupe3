@@ -21,6 +21,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ConnectionEleve extends AppCompatActivity {
+
+    public static int NbEtoileN1 = 0;
+    public static int NbEtoileN2=0;
+    public static int NbEtoileN3=0;
+    public static int NbEtoileN4=0;
+    public static int NbEtoileN5=0;
+    public static int NbEtoileN6=0;
+
     String urlCoEleve = "http://lexical.hopto.org/lexical/connect.php";
 
     @Override
