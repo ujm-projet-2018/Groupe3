@@ -1,177 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#EBE7DE"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Quels sont les mot correspondants a ce champ lexical ?"
-        android:textColor="#009BCB"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        />
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/drop"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#009BCB"
-        >
-        <TextView
-            android:id="@+id/champ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text=""
-            android:textColor="#EBE7DE"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
-
-    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:rowCount="4"
-        android:columnCount="2"
-        android:layout_marginTop="30dp"
-        >
+        android:visibility="visible">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/holo_purple"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <ImageView
+            android:id="@+id/etoile1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toStartOf="@+id/etoile2"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <ImageView
+            android:id="@+id/etoile2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toStartOf="@+id/etoile3"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <ImageView
+            android:id="@+id/etoile3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <ImageView
+            android:id="@+id/etoile4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toEndOf="@+id/etoile3"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <ImageView
+            android:id="@+id/etoile5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toEndOf="@+id/etoile4"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <TextView
+            android:id="@+id/n1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@+id/valider"
+            android:layout_below="@+id/toolbar"
+            android:text="Niveau 1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <EditText
+            android:id="@+id/question"
+            android:inputType="textPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/n1"
+            android:layout_alignBottom="@+id/n1"
+            android:textSize="15dp"
+            android:text="Déplacez les mots correspondant dans le champ lexical" />
 
         <Button
+            android:id="@+id/valider"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/colorPrimaryDark"
+            android:text="Valider" />
+
+        <TextView
             android:id="@+id/mot1"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
-        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/question"
+            android:layout_marginTop="13dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
             android:id="@+id/mot2"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
-        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/mot1"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
             android:id="@+id/mot3"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
-        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/mot2"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
             android:id="@+id/mot4"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
-        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/mot3"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
             android:id="@+id/mot5"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
-        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/mot1"
+            android:layout_alignBottom="@+id/mot1"
+            android:layout_toEndOf="@+id/etoile1"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
             android:id="@+id/mot6"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
-        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mot5"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/etoile1"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
             android:id="@+id/mot7"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="0"
-            android:layout_row="3"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
-        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mot6"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/etoile1"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
             android:id="@+id/mot8"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mot7"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/etoile1"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/champ1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/drop"
+            android:layout_alignStart="@+id/drop"
+            android:background="@android:color/holo_red_light"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:visibility="visible" />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/drop"
             android:layout_marginTop="5dp"
-            android:background="#E54C44"
-            android:textColor="#EBE7DE"
-            android:textStyle="bold"
-            android:layout_column="1"
-            android:layout_row="3"
-            android:text="mot1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            />
+            android:orientation="vertical"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#009BCB"
+            android:layout_alignStart="@+id/etoile4"
+            android:layout_below="@+id/mot1">
+        </LinearLayout>
 
 
-
-    </GridLayout>
-
-
-
-
+    </RelativeLayout>
 
 </LinearLayout>
