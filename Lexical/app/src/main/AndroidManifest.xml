@@ -25,7 +25,18 @@
         <activity android:name=".AjoutEleve" />
         <activity android:name=".StatEleve" />
         <activity android:name=".AjoutMot" />
-        <activity android:name=".exo1" />
+        <activity android:name=".exo1"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".exo2"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".exo3"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".exo4"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".exo5"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".exo6"
+            android:screenOrientation="landscape"/>
         <activity android:name=".gameOverExo1"></activity>
     </application>
 
