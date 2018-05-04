@@ -30,14 +30,14 @@ public class exo2 extends AppCompatActivity {
     String scriptExo2 = "http://lexical.hopto.org/lexical/exo2.php";
     TextView nom_champ1;
     TextView nom_champ2;
-    Button mot1;
-    Button mot2;
-    Button mot3;
-    Button mot4;
-    Button mot5;
-    Button mot6;
-    Button mot7;
-    Button mot8;
+    TextView mot1;
+    TextView mot2;
+    TextView mot3;
+    TextView mot4;
+    TextView mot5;
+    TextView mot6;
+    TextView mot7;
+    TextView mot8;
     Button valider;
     int nbrMotPlace;
     boolean erreur;
@@ -50,17 +50,17 @@ public class exo2 extends AppCompatActivity {
         setContentView(R.layout.activity_exo2);
         nom_champ1 = (TextView) findViewById(R.id.champ1);
         nom_champ2 = (TextView) findViewById(R.id.champ2);
-        mot1 = (Button) findViewById(R.id.mot1);
-        mot2 = (Button) findViewById(R.id.mot2);
-        mot3 = (Button) findViewById(R.id.mot3);
-        mot4 = (Button) findViewById(R.id.mot4);
-        mot5 = (Button) findViewById(R.id.mot5);
-        mot6 = (Button) findViewById(R.id.mot6);
-        mot7 = (Button) findViewById(R.id.mot7);
-        mot8 = (Button) findViewById(R.id.mot8);
+        mot1 = (TextView) findViewById(R.id.mot1);
+        mot2 = (TextView) findViewById(R.id.mot2);
+        mot3 = (TextView) findViewById(R.id.mot3);
+        mot4 = (TextView) findViewById(R.id.mot4);
+        mot5 = (TextView) findViewById(R.id.mot5);
+        mot6 = (TextView) findViewById(R.id.mot6);
+        mot7 = (TextView) findViewById(R.id.mot7);
+        mot8 = (TextView) findViewById(R.id.mot8);
         valider = (Button) findViewById(R.id.valider);
-        final ArrayList<Button> listMot1 = new ArrayList<Button>();
-        final ArrayList<Button> listMot2 = new ArrayList<Button>();
+        final ArrayList<TextView> listMot1 = new ArrayList<TextView>();
+        final ArrayList<TextView> listMot2 = new ArrayList<TextView>();
         listMot1.add(mot1);
         listMot1.add(mot2);
         listMot1.add(mot3);
@@ -218,7 +218,7 @@ public class exo2 extends AppCompatActivity {
                     //gagner
                 }
                 else{
-                    Intent appel = new Intent(exo2.this, gameOverExo2.class);
+                    Intent appel = new Intent(exo2.this, gameOverExo1.class);
                     startActivity(appel);
                 }
             }
