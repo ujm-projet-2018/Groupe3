@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/holo_purple"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <ImageView
+            android:id="@+id/etoile1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toStartOf="@+id/etoile2"
+            android:layout_alignParentStart="true"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+
+        <ImageView
+            android:id="@+id/etoile2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <ImageView
+            android:id="@+id/etoile3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toEndOf="@+id/etoile2"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <TextView
+            android:id="@+id/n6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@+id/valider"
+            android:layout_below="@+id/toolbar"
+            android:text="Niveau 6"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <EditText
+            android:id="@+id/question"
+            android:inputType="textPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/n6"
+            android:layout_alignBottom="@+id/n6"
+            android:textSize="15dp"
+            android:text="Trouver l'intrus et donner le champs lexical qui appartient à ces mots" />
+
+        <Button
+            android:id="@+id/valider"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/colorPrimaryDark"
+            android:text="Valider" />
+
+        <TextView
+            android:id="@+id/mot1"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/champ1"
+            android:layout_marginTop="18dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/mot1"
+            android:layout_below="@+id/mot1"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot3"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/mot2"
+            android:layout_below="@+id/mot2"
+            android:layout_marginTop="14dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot4"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/mot3"
+            android:layout_alignBottom="@+id/mot3"
+            android:layout_alignStart="@+id/mot5"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot5"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/mot3"
+            android:layout_alignStart="@+id/mot6"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot6"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/mot1"
+            android:layout_alignBottom="@+id/mot1"
+            android:layout_marginStart="18dp"
+            android:layout_toEndOf="@+id/mot1"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot7"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/mot6"
+            android:layout_alignBottom="@+id/mot6"
+            android:layout_marginStart="18dp"
+            android:layout_toEndOf="@+id/mot6"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot8"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/mot3"
+            android:layout_alignStart="@+id/mot7"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot9"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/mot3"
+            android:layout_alignBottom="@+id/mot3"
+            android:layout_alignStart="@+id/mot8"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/champ1"
+            android:layout_width="485dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/question"
+            android:background="@android:color/holo_red_light"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/rep1"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/question"
+            android:layout_toEndOf="@+id/mot1"
+            android:background="@android:color/holo_blue_bright"
+            android:hint="écriver ici le nom"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/intrus"
+            android:layout_width="60sp"
+            android:layout_height="50dp"
+            android:layout_alignBaseline="@+id/valider"
+            android:layout_alignBottom="@+id/valider"
+            android:layout_alignParentStart="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="intrus :" />
+
+        <EditText
+            android:id="@+id/repintrus"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/intrus"
+            android:layout_alignBottom="@+id/intrus"
+            android:layout_toStartOf="@+id/etoile2"
+            android:background="@android:color/holo_blue_bright"
+            android:hint="déplacer l'intrus ici"
+            android:textAlignment="center" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
