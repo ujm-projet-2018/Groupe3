@@ -1,6 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS Eleve, Professeur, Resultat, Obtient, Mot, Champ_lexical;
+DROP TABLE IF EXISTS Eleve, Professeur, Resultat, Obtient, Mot, Champ_lexical, Appartient;
 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Eleve (
 
 CREATE TABLE IF NOT EXISTS Professeur(
        id_professeur INT NOT NULL AUTO_INCREMENT,
+       pseudo_prof VARCHAR(50) NOT NULL,
        mot_passe VARCHAR(60) NOT NULL,
        PRIMARY KEY (id_professeur)
 );
@@ -38,14 +39,20 @@ CREATE TABLE IF NOT EXISTS Obtient (
 CREATE TABLE IF NOT EXISTS Mot (
        id_mot INT NOT NULL AUTO_INCREMENT,
        mot VARCHAR(60),
-       classe INT NOT NULL,
+       classe VARCHAR(10) NOT NULL,
        PRIMARY KEY (id_mot)
 );
 
 CREATE TABLE IF NOT EXISTS Champ_lexical(
        id_champ INT NOT NULL AUTO_INCREMENT,
        nom_champ VARCHAR(60),
-       classe INT NOT NULL,
        PRIMARY KEY (id_champ)
 );
+
+CREATE TABLE IF NOT EXISTS Appartient(
+       id_mot INT NOT NULL,
+       id_champ INT NOT NULL,
+       FOREIGN KEY (id_mot) REFERENCES Mot(id_mot),
+       FOREIGN KEY (id_champ) REFERENCES Champ_lexical(id_champ)
+       );
        
