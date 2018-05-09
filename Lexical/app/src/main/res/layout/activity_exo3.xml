@@ -15,9 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@android:color/holo_purple"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:background="@android:color/holo_purple" />
 
         <ImageView
             android:id="@+id/etoile1"
@@ -64,6 +62,56 @@
             android:layout_toEndOf="@+id/etoile4"
             app:srcCompat="@android:drawable/btn_star_big_off" />
 
+        <ImageView
+            android:id="@+id/etoileON1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toStartOf="@+id/etoile2"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/etoileON2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toStartOf="@+id/etoile3"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/etoileON3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/etoileON4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toEndOf="@+id/etoile3"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/etoileON5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_marginStart="44dp"
+            android:layout_toEndOf="@+id/etoile4"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:visibility="invisible"/>
+
         <TextView
             android:id="@+id/n3"
             android:layout_width="wrap_content"
@@ -82,27 +130,7 @@
             android:layout_alignBaseline="@+id/n3"
             android:layout_alignBottom="@+id/n3"
             android:textSize="15dp"
-            android:text="Ecrivez le nom du champ lexical qui correspond à ses mots." />
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="400dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/question"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:background="@android:color/holo_red_light"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
-
-        <EditText
-            android:id="@+id/rep1"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_alignTop="@+id/toolbar2"
-            android:layout_centerHorizontal="true"
-            android:hint="Ecrire ici"
-            android:textAlignment="center" />
+            android:text="Déplacez le nom du champ lexical qui correspond à ses mots." />
 
         <Button
             android:id="@+id/valider"
@@ -111,16 +139,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:background="?attr/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="Valider" />
 
         <TextView
             android:id="@+id/mot1"
             android:layout_width="195dp"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/toolbar2"
-            android:layout_below="@+id/toolbar2"
-            android:layout_marginTop="13dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/question"
             android:background="@android:color/darker_gray"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -135,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/mot1"
             android:layout_marginTop="12dp"
-            android:layout_alignStart="@+id/toolbar2"
+            android:layout_alignStart="@+id/question"
             android:background="@android:color/darker_gray"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -176,11 +203,11 @@
 
         <TextView
             android:id="@+id/mot5"
-            android:layout_width="200dp"
+            android:layout_width="195dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/mot1"
-            android:layout_alignBottom="@+id/mot1"
-            android:layout_alignEnd="@+id/toolbar2"
+            android:layout_below="@+id/mot4"
+            android:layout_alignStart="@+id/mot1"
+            android:layout_marginTop="12dp"
             android:background="@android:color/darker_gray"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -189,14 +216,14 @@
             android:typeface="serif"
             android:visibility="visible" />
 
+
         <TextView
-            android:id="@+id/mot6"
+            android:id="@+id/champ1"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mot5"
-            android:layout_marginTop="12dp"
-            android:layout_alignEnd="@+id/toolbar2"
-            android:background="@android:color/darker_gray"
+            android:layout_alignStart="@+id/etoile3"
+            android:layout_below="@+id/mot1"
+            android:background="@android:color/holo_red_dark"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/black"
@@ -205,13 +232,13 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/mot7"
+            android:id="@+id/champ2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mot6"
+            android:layout_below="@+id/champ1"
             android:layout_marginTop="12dp"
-            android:layout_alignEnd="@+id/toolbar2"
-            android:background="@android:color/darker_gray"
+            android:layout_alignEnd="@+id/champ1"
+            android:background="@android:color/holo_red_dark"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/black"
@@ -220,19 +247,74 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/mot8"
+            android:id="@+id/champ3"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mot7"
+            android:layout_below="@+id/champ2"
             android:layout_marginTop="12dp"
-            android:layout_alignEnd="@+id/toolbar2"
-            android:background="@android:color/darker_gray"
+            android:layout_alignEnd="@+id/champ2"
+            android:background="@android:color/holo_red_dark"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:typeface="serif"
             android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/champ4"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/champ3"
+            android:layout_marginTop="12dp"
+            android:layout_alignEnd="@+id/champ3"
+            android:background="@android:color/holo_red_dark"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/rep"
+            android:inputType="textPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/valider"
+            android:layout_alignBottom="@+id/valider"
+            android:textSize="15dp"
+            android:text="champ : " />
+
+        <EditText
+            android:id="@+id/repintrus"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp"
+            android:layout_marginStart="88dp"
+            android:background="@android:color/holo_blue_bright"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:hint="déplacer le champ ici"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/champ"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="11dp"
+            android:layout_marginStart="88dp"
+            android:background="@android:color/holo_red_dark"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

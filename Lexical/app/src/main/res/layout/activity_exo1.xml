@@ -15,9 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@android:color/holo_purple"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:background="@android:color/holo_purple" />
 
         <ImageView
             android:id="@+id/etoile1"
@@ -141,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:background="?attr/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="Valider" />
 
         <TextView
@@ -289,6 +287,14 @@
             android:layout_below="@+id/mot1">
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/color"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/valider"
+            android:background="@android:color/holo_blue_bright"
+            android:hint="enlève la couleur ici"
+            android:textAlignment="center" />
 
     </RelativeLayout>
 
