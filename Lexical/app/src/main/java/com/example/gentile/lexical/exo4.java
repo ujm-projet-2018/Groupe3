@@ -2,7 +2,6 @@ package com.example.gentile.lexical;
 
 import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,24 +33,29 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class exo2 extends AppCompatActivity {
+public class exo4 extends AppCompatActivity {
 
-    String scriptExo2 = "http://lexical.hopto.org/lexical/exo2.php";
-    EditText rep1, rep2;
-    TextView nom_champ1, nom_champ2;
-    TextView mot1,mot2,mot3,mot4,mot5,mot6,mot7,mot8;
+    String scriptExo4 = "http://lexical.hopto.org/lexical/exo4.php";
+    EditText rep1,rep2,rep3;
+    TextView nom_champ1,nom_champ2,nom_champ3,nom_champ4,nom_champ5;
+    TextView mot1, mot2,mot3,mot4,mot5,mot6,mot7,mot8,mot9,mot10,mot11,mot12;
+    TextView rep_champ1,rep_champ2,rep_champ3;
     Button valider;
     ImageView etoileON1, etoileON2, etoileON3, etoileON4, etoileON5;
-    boolean juste_mot0,juste_mot1,juste_mot2,juste_mot3,juste_mot4,juste_mot5,juste_mot6,juste_mot7;
+    boolean juste_rep1,juste_rep2,juste_rep3;
     public JSONObject jsonObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exo2);
+        setContentView(R.layout.activity_exo4);
         rep1 = (EditText) findViewById(R.id.rep1);
         rep2 = (EditText) findViewById(R.id.rep2);
+        rep3 = (EditText) findViewById(R.id.rep3);
         nom_champ1 = (TextView) findViewById(R.id.champ1);
         nom_champ2 = (TextView) findViewById(R.id.champ2);
+        nom_champ3 = (TextView) findViewById(R.id.champ3);
+        nom_champ4 = (TextView) findViewById(R.id.champ4);
+        nom_champ5 = (TextView) findViewById(R.id.champ5);
         mot1 = (TextView) findViewById(R.id.mot1);
         mot2 = (TextView) findViewById(R.id.mot2);
         mot3 = (TextView) findViewById(R.id.mot3);
@@ -60,26 +64,32 @@ public class exo2 extends AppCompatActivity {
         mot6 = (TextView) findViewById(R.id.mot6);
         mot7 = (TextView) findViewById(R.id.mot7);
         mot8 = (TextView) findViewById(R.id.mot8);
+        mot9 = (TextView) findViewById(R.id.mot9);
+        mot10 = (TextView) findViewById(R.id.mot10);
+        mot11 = (TextView) findViewById(R.id.mot11);
+        mot12 = (TextView) findViewById(R.id.mot12);
         valider = (Button) findViewById(R.id.valider);
-
         etoileON1 = (ImageView) findViewById(R.id.etoileON1);
         etoileON2 = (ImageView) findViewById(R.id.etoileON2);
         etoileON3 = (ImageView) findViewById(R.id.etoileON3);
         etoileON4 = (ImageView) findViewById(R.id.etoileON4);
         etoileON5 = (ImageView) findViewById(R.id.etoileON5);
-
-        if(ConnectionEleve.NbEtoileN2>0) {
+        if(ConnectionEleve.NbEtoileN4>0) {
             etoileON1.setVisibility(View.VISIBLE);
         }
-        if(ConnectionEleve.NbEtoileN2>1) {
+        if(ConnectionEleve.NbEtoileN4>1) {
             etoileON2.setVisibility(View.VISIBLE);
         }
-        if(ConnectionEleve.NbEtoileN2>2) {
+        if(ConnectionEleve.NbEtoileN4>2) {
             etoileON3.setVisibility(View.VISIBLE);
         }
-        if(ConnectionEleve.NbEtoileN2>3) {
+        if(ConnectionEleve.NbEtoileN4>3) {
             etoileON4.setVisibility(View.VISIBLE);
         }
+
+        rep_champ1 = (TextView) findViewById(R.id.repChamp1);
+        rep_champ2 = (TextView) findViewById(R.id.repChamp2);
+        rep_champ3 = (TextView) findViewById(R.id.repChamp3);
         final ArrayList<TextView> listMot = new ArrayList<TextView>();
         listMot.add(mot1);
         listMot.add(mot2);
@@ -89,20 +99,24 @@ public class exo2 extends AppCompatActivity {
         listMot.add(mot6);
         listMot.add(mot7);
         listMot.add(mot8);
+        listMot.add(mot9);
+        listMot.add(mot10);
+        listMot.add(mot11);
+        listMot.add(mot12);
 
         OkHttpClient client = new OkHttpClient();
         RequestBody formBody = new FormBody.Builder()
-                .add("eleveExo1", "eleveexo1 Wh")
+                .add("eleveExo4", "eleveexo4 Wh")
                 .build();
         Request request = new Request.Builder()
-                .url(scriptExo2)
+                .url(scriptExo4)
                 .post(formBody)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             public void onFailure(Call call, IOException e) {
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(exo2.this,
+                        Toast.makeText(exo4.this,
                                 "Connection au serveur impossible.",
                                 Toast.LENGTH_SHORT).show();
                         return;
@@ -118,15 +132,21 @@ public class exo2 extends AppCompatActivity {
                         try {
                             System.out.println(resp);
                             jsonObj = new JSONObject(resp);
-                            String champ_lex1 = jsonObj.getString("champ0");
-                            nom_champ1.setText(champ_lex1);
+                            String champ_lex = jsonObj.getString("champ0");
+                            nom_champ1.setText(champ_lex);
                             String champ_lex2 = jsonObj.getString("champ1");
                             nom_champ2.setText(champ_lex2);
-                            int place = (int) (Math.random()*7);
+                            String champ_lex3 = jsonObj.getString("champ2");
+                            nom_champ3.setText(champ_lex3);
+                            String champ_lex4 = jsonObj.getString("intru0");
+                            nom_champ4.setText(champ_lex4);
+                            String champ_lex5 = jsonObj.getString("intru1");
+                            nom_champ5.setText(champ_lex5);
+                            int place = 0;
                             //on met les bon mot dans la liste
-                            for(int i=0;i<8;i++) {
+                            for(int i=0;i<12;i++) {
                                 String nom_mot = jsonObj.getString("mot"+i);
-                                listMot.get(place%8).setText(nom_mot);
+                                listMot.get(place).setText(nom_mot);
                                 place++;
                             }
                         } catch (Exception e) {
@@ -134,18 +154,17 @@ public class exo2 extends AppCompatActivity {
                         }
                     }
                 });
+
             }
         });
 
 
-        mot1.setOnTouchListener(new MyTouchListener());
-        mot2.setOnTouchListener(new MyTouchListener());
-        mot3.setOnTouchListener(new MyTouchListener());
-        mot4.setOnTouchListener(new MyTouchListener());
-        mot5.setOnTouchListener(new MyTouchListener());
-        mot6.setOnTouchListener(new MyTouchListener());
-        mot7.setOnTouchListener(new MyTouchListener());
-        mot8.setOnTouchListener(new MyTouchListener());
+        nom_champ1.setOnTouchListener(new MyTouchListener());
+        nom_champ2.setOnTouchListener(new MyTouchListener());
+        nom_champ3.setOnTouchListener(new MyTouchListener());
+        nom_champ4.setOnTouchListener(new MyTouchListener());
+        nom_champ5.setOnTouchListener(new MyTouchListener());
+
 
         rep1.setOnDragListener(new View.OnDragListener() {
             public boolean onDrag(View v, DragEvent event) {
@@ -162,35 +181,16 @@ public class exo2 extends AppCompatActivity {
                         //Executed when user drops the data
                         TextView but = (TextView) event.getLocalState();
                         try {
-                            if(but.getText().equals(jsonObj.getString("mot0")) || but.getText().equals(jsonObj.getString("mot1"))
-                                    || but.getText().equals(jsonObj.getString("mot2")) || but.getText().equals(jsonObj.getString("mot3"))
-                                    || but.getText().equals(jsonObj.getString("mot4")) || but.getText().equals(jsonObj.getString("mot5"))
-                                    || but.getText().equals(jsonObj.getString("mot6")) || but.getText().equals(jsonObj.getString("mot7" ))){
-                                but.setBackgroundColor(Color.BLUE);
+                            if(but.getText().equals(jsonObj.getString("champ0"))) {
+                                rep_champ1.setText(but.getText());
+                                rep_champ1.setVisibility(View.VISIBLE);
+                                juste_rep1=true;
                             }
-                            if(but.getText().equals(jsonObj.getString("mot0"))){
-                                juste_mot0=true;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot1"))){
-                                juste_mot1=true;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot2"))){
-                                juste_mot2=true;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot3"))){
-                                juste_mot3=true;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot4"))){
-                                juste_mot4=false;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot5"))){
-                                juste_mot5=false;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot6"))){
-                                juste_mot6=false;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot7"))){
-                                juste_mot7=false;
+                            if(but.getText().equals(jsonObj.getString("champ1")) || but.getText().equals(jsonObj.getString("champ2"))
+                                    || but.getText().equals(jsonObj.getString("intru0")) || but.getText().equals(jsonObj.getString("intru1"))){
+                                rep_champ1.setText(but.getText());
+                                rep_champ1.setVisibility(View.VISIBLE);
+                                juste_rep1=false;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -221,36 +221,16 @@ public class exo2 extends AppCompatActivity {
                         //Executed when user drops the data
                         TextView but = (TextView) event.getLocalState();
                         try {
-
-                            if(but.getText().equals(jsonObj.getString("mot0")) || but.getText().equals(jsonObj.getString("mot1"))
-                                    || but.getText().equals(jsonObj.getString("mot2")) || but.getText().equals(jsonObj.getString("mot3"))
-                                    || but.getText().equals(jsonObj.getString("mot4")) || but.getText().equals(jsonObj.getString("mot5"))
-                                    || but.getText().equals(jsonObj.getString("mot6")) || but.getText().equals(jsonObj.getString("mot7" ))){
-                                but.setBackgroundColor(Color.GREEN);
+                            if(but.getText().equals(jsonObj.getString("champ1"))) {
+                                rep_champ2.setText(but.getText());
+                                rep_champ2.setVisibility(View.VISIBLE);
+                                juste_rep2=true;
                             }
-                            if(but.getText().equals(jsonObj.getString("mot0"))){
-                                juste_mot0=false;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot1"))){
-                                juste_mot1=false;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot2"))){
-                                juste_mot2=false;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot3"))){
-                                juste_mot3=false;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot4"))){
-                                juste_mot4=true;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot5"))){
-                                juste_mot5=true;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot6"))){
-                                juste_mot6=true;
-                            }
-                            if(but.getText().equals(jsonObj.getString("mot7"))){
-                                juste_mot7=true;
+                            if(but.getText().equals(jsonObj.getString("champ0")) || but.getText().equals(jsonObj.getString("champ2"))
+                                    || but.getText().equals(jsonObj.getString("intru0")) || but.getText().equals(jsonObj.getString("intru1"))){
+                                rep_champ2.setText(but.getText());
+                                rep_champ2.setVisibility(View.VISIBLE);
+                                juste_rep2=false;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -265,30 +245,68 @@ public class exo2 extends AppCompatActivity {
                 return true;
             }
         });
+        rep3.setOnDragListener(new View.OnDragListener() {
+            public boolean onDrag(View v, DragEvent event) {
+                final int action = event.getAction();
+                switch (action) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        break;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        break;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        // Executed after the Drag Shadow enters the drop area
+                        break;
+                    case DragEvent.ACTION_DROP:
+                        //Executed when user drops the data
+                        TextView but = (TextView) event.getLocalState();
+                        try {
+                            if(but.getText().equals(jsonObj.getString("champ2"))) {
+                                rep_champ3.setText(but.getText());
+                                rep_champ3.setVisibility(View.VISIBLE);
+                                juste_rep3=true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("champ0")) || but.getText().equals(jsonObj.getString("champ1"))
+                                    || but.getText().equals(jsonObj.getString("intru0")) || but.getText().equals(jsonObj.getString("intru1"))){
+                                rep_champ3.setText(but.getText());
+                                rep_champ3.setVisibility(View.VISIBLE);
+                                juste_rep3=false;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return (true);
 
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        return (true);
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
         valider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ConnectionEleve.niveau=2;
-                if(juste_mot0==true && juste_mot1==true && juste_mot2==true && juste_mot3==true
-                        && juste_mot4==true && juste_mot5==true && juste_mot6==true && juste_mot7==true ){
-                    ConnectionEleve.NbEtoileN2++;
-                    if(ConnectionEleve.NbEtoileN2==5){
-                        Intent appel = new Intent(exo2.this, exo3.class);
+                ConnectionEleve.niveau=4;
+                if(juste_rep1==true && juste_rep2==true && juste_rep3==true){
+                    ConnectionEleve.NbEtoileN4+=1;
+                    if(ConnectionEleve.NbEtoileN4==5){
+                        etoileON5.setVisibility(View.VISIBLE);
+                        Intent appel = new Intent(exo4.this, exo5.class);
                         startActivity(appel);
                     }
                     else{
-                        Intent appel = new Intent(exo2.this, exo2.class);
+                        Intent appel = new Intent(exo4.this, exo4.class);
                         startActivity(appel);
                     }
                 }
                 else{
-                    ConnectionEleve.NbErreurN2++;
-                    if(ConnectionEleve.NbErreurN2<5){
-                        Intent appel = new Intent(exo2.this, gameOverExo1.class);
+                    ConnectionEleve.NbErreurN4++;
+                    if(ConnectionEleve.NbErreurN4<5){
+                        Intent appel = new Intent(exo4.this, gameOverExo1.class);
                         startActivity(appel);
                     }
-                    if(ConnectionEleve.NbErreurN2>=5){
-                        Intent appel = new Intent(exo2.this, aide.class);
+                    if(ConnectionEleve.NbErreurN4>=5){
+                        Intent appel = new Intent(exo4.this, aide.class);
                         startActivity(appel);
                     }
                 }

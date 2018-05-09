@@ -15,8 +15,30 @@ public class gameOverExo1 extends AppCompatActivity {
         Button addEleve = (Button) findViewById(R.id.recommencer);
         addEleve.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Intent appel = new Intent(gameOverExo1.this, exo1.class);
-                startActivity(appel);
+                if(ConnectionEleve.niveau==1) {
+                    Intent appel = new Intent(gameOverExo1.this, exo1.class);
+                    startActivity(appel);
+                }
+                if(ConnectionEleve.niveau==2) {
+                    Intent appel = new Intent(gameOverExo1.this, exo2.class);
+                    startActivity(appel);
+                }
+                if(ConnectionEleve.niveau==3) {
+                    Intent appel = new Intent(gameOverExo1.this, exo3.class);
+                    startActivity(appel);
+                }
+                if(ConnectionEleve.niveau==4) {
+                    Intent appel = new Intent(gameOverExo1.this, exo4.class);
+                    startActivity(appel);
+                }
+                if(ConnectionEleve.niveau==5) {
+                    Intent appel = new Intent(gameOverExo1.this, exo5.class);
+                    startActivity(appel);
+                }
+                if(ConnectionEleve.niveau==6) {
+                    Intent appel = new Intent(gameOverExo1.this, exo6.class);
+                    startActivity(appel);
+                }
             }
         });
     }

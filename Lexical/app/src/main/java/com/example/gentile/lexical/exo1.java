@@ -2,6 +2,7 @@ package com.example.gentile.lexical;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,24 +35,18 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class exo1 extends AppCompatActivity {
+
     String scriptExo1 = "http://lexical.hopto.org/lexical/exo1.php";
     LinearLayout drop;
     TextView nom_champ;
-    TextView mot1;
-    TextView mot2;
-    TextView mot3;
-    TextView mot4;
-    TextView mot5;
-    TextView mot6;
-    TextView mot7;
-    TextView mot8;
+    TextView mot1,mot2,mot3,mot4,mot5,mot6,mot7,mot8;
     Button valider;
-    ImageView etoile1, etoile2, etoile3, etoile4, etoile5;
+    EditText color;
     ImageView etoileON1, etoileON2, etoileON3, etoileON4, etoileON5;
     int nbrMotPlace;
-    boolean erreur;
+    boolean juste_mot1=false,juste_mot2=false,juste_mot3=false,juste_mot4=false,juste_mot0=false;
+    boolean erreur_intru1=false,erreur_intru2=false,erreur_intru3=false;
     public JSONObject jsonObj;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,16 +62,25 @@ public class exo1 extends AppCompatActivity {
         mot7 = (TextView) findViewById(R.id.mot7);
         mot8 = (TextView) findViewById(R.id.mot8);
         valider = (Button) findViewById(R.id.valider);
-        etoile1 = (ImageView) findViewById(R.id.etoile1);
-        etoile2 = (ImageView) findViewById(R.id.etoile2);
-        etoile3 = (ImageView) findViewById(R.id.etoile3);
-        etoile4 = (ImageView) findViewById(R.id.etoile4);
-        etoile5 = (ImageView) findViewById(R.id.etoile5);
+        color = (EditText) findViewById(R.id.color);
         etoileON1 = (ImageView) findViewById(R.id.etoileON1);
         etoileON2 = (ImageView) findViewById(R.id.etoileON2);
         etoileON3 = (ImageView) findViewById(R.id.etoileON3);
         etoileON4 = (ImageView) findViewById(R.id.etoileON4);
         etoileON5 = (ImageView) findViewById(R.id.etoileON5);
+
+        if(ConnectionEleve.NbEtoileN1>0) {
+            etoileON1.setVisibility(View.VISIBLE);
+        }
+        if(ConnectionEleve.NbEtoileN1>1) {
+            etoileON2.setVisibility(View.VISIBLE);
+        }
+        if(ConnectionEleve.NbEtoileN1>2) {
+            etoileON3.setVisibility(View.VISIBLE);
+        }
+        if(ConnectionEleve.NbEtoileN1>3) {
+            etoileON4.setVisibility(View.VISIBLE);
+        }
         final ArrayList<TextView> listMot = new ArrayList<TextView>();
         listMot.add(mot1);
         listMot.add(mot2);
@@ -162,12 +167,94 @@ public class exo1 extends AppCompatActivity {
                         //Executed when user drops the data
                         TextView but = (TextView) event.getLocalState();
                         try {
-                            if(but.getText().equals(jsonObj.getString("mot0")) || but.getText().equals(jsonObj.getString("mot1")) || but.getText().equals(jsonObj.getString("mot2")) || but.getText().equals(jsonObj.getString("mot3")) || but.getText().equals(jsonObj.getString("mot4")) || but.getText().equals(jsonObj.getString("mot5")) || but.getText().equals(jsonObj.getString("mot6"))) {
-                                but.setVisibility(View.INVISIBLE);
-                                nbrMotPlace++;
+                            if(but.getText().equals(jsonObj.getString("mot0")) || but.getText().equals(jsonObj.getString("mot1")) ||
+                                    but.getText().equals(jsonObj.getString("mot2")) || but.getText().equals(jsonObj.getString("mot3")) ||
+                                    but.getText().equals(jsonObj.getString("mot4")) || but.getText().equals(jsonObj.getString("intru1")) ||
+                                    but.getText().equals(jsonObj.getString("intru2")) || but.getText().equals(jsonObj.getString("intru3"))){
+                                 but.setBackgroundColor(Color.GREEN);
                             }
-                            if(but.getText().equals(jsonObj.getString("intru0")) || but.getText().equals(jsonObj.getString("intru1")) || but.getText().equals(jsonObj.getString("intru2"))){
-                                erreur = true;
+                            if(but.getText().equals(jsonObj.getString("mot0"))){
+                                juste_mot0=true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot1"))){
+                                juste_mot1=true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot2"))){
+                                juste_mot2=true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot3"))){
+                                juste_mot3=true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot4"))){
+                                juste_mot4=true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("intru1"))){
+                                erreur_intru1 = true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("intru2"))){
+                                erreur_intru2 = true;
+                            }
+                            if(but.getText().equals(jsonObj.getString("intru3"))){
+                                erreur_intru3 = true;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return (true);
+
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        return (true);
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+
+        color.setOnDragListener(new View.OnDragListener() {
+            public boolean onDrag(View v, DragEvent event) {
+                final int action = event.getAction();
+                switch (action) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        break;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        break;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        // Executed after the Drag Shadow enters the drop area
+                        break;
+                    case DragEvent.ACTION_DROP:
+                        //Executed when user drops the data
+                        TextView but = (TextView) event.getLocalState();
+                        try {
+                            if(but.getText().equals(jsonObj.getString("mot0")) || but.getText().equals(jsonObj.getString("mot1")) ||
+                                    but.getText().equals(jsonObj.getString("mot2")) || but.getText().equals(jsonObj.getString("mot3")) ||
+                                    but.getText().equals(jsonObj.getString("mot4")) || but.getText().equals(jsonObj.getString("intru1")) ||
+                                    but.getText().equals(jsonObj.getString("intru2")) || but.getText().equals(jsonObj.getString("intru3"))){
+                                but.setBackgroundColor(Color.GRAY);
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot0"))){
+                                juste_mot0=false;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot1"))){
+                                juste_mot1=false;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot2"))){
+                                juste_mot2=false;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot3"))){
+                                juste_mot3=false;
+                            }
+                            if(but.getText().equals(jsonObj.getString("mot4"))){
+                                juste_mot4=false;
+                            }
+                            if(but.getText().equals(jsonObj.getString("intru1"))){
+                                erreur_intru1 = false;
+                            }
+                            if(but.getText().equals(jsonObj.getString("intru2"))){
+                                erreur_intru2 = false;
+                            }
+                            if(but.getText().equals(jsonObj.getString("intru3"))){
+                                erreur_intru3 = false;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -185,38 +272,33 @@ public class exo1 extends AppCompatActivity {
 
         valider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!erreur && nbrMotPlace == 5){
+                ConnectionEleve.niveau=1;
+               // if(!erreur && nbrMotPlace>=5 && juste_rep1==true){
+                if(juste_mot0==true && juste_mot1==true && juste_mot2==true && juste_mot3==true && juste_mot4==true
+                        && erreur_intru1==false && erreur_intru2==false && erreur_intru3==false){
                     //gagner
-                    ConnectionEleve.NbEtoileN1+=5;
-                    if(ConnectionEleve.NbEtoileN1==1) {
-                         etoileON1.setVisibility(View.VISIBLE);
-                        Intent appel = new Intent(exo1.this, exo1.class);
-                        startActivity(appel);
-                    }
-                    if(ConnectionEleve.NbEtoileN1==2) {
-                        etoileON2.setVisibility(View.VISIBLE);
-                        Intent appel = new Intent(exo1.this, exo1.class);
-                        startActivity(appel);
-                    }
-                    if(ConnectionEleve.NbEtoileN1==3) {
-                        etoileON3.setVisibility(View.VISIBLE);
+                    ConnectionEleve.NbEtoileN1+=1;
 
-                        Intent appel = new Intent(exo1.this, exo1.class);
-                        startActivity(appel);
-                    }
-                    if(ConnectionEleve.NbEtoileN1==4) {
-                        etoileON4.setVisibility(View.VISIBLE);
-                        Intent appel = new Intent(exo1.this, exo1.class);
-                        startActivity(appel);
-                    }
                     if(ConnectionEleve.NbEtoileN1==5){
+                        etoileON4.setVisibility(View.VISIBLE);
                         Intent appel = new Intent(exo1.this, exo2.class);
+                        startActivity(appel);
+                    }
+                    else{
+                        Intent appel = new Intent(exo1.this, exo1.class);
                         startActivity(appel);
                     }
                 }
                 else{
-                    Intent appel = new Intent(exo1.this, gameOverExo1.class);
-                    startActivity(appel);
+                    ConnectionEleve.NbErreurN1++;
+                    if(ConnectionEleve.NbErreurN1<5){
+                        Intent appel = new Intent(exo1.this, gameOverExo1.class);
+                        startActivity(appel);
+                    }
+                    if(ConnectionEleve.NbErreurN1>=5){
+                        Intent appel = new Intent(exo1.this, aide.class);
+                        startActivity(appel);
+                    }
                 }
             }
         });
