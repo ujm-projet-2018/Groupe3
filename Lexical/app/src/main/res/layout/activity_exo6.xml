@@ -80,7 +80,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignStart="@+id/valider"
             android:layout_below="@+id/toolbar"
-            android:text="Niveau 6"
+            android:text="Nv 6"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <EditText
@@ -90,6 +90,7 @@
             android:layout_alignBaseline="@+id/n6"
             android:layout_alignBottom="@+id/n6"
             android:inputType="textPersonName"
+            android:focusableInTouchMode="false"
             android:text="Trouver l'intrus et donner le champs lexical qui appartient à ces mots"
             android:textSize="15dp" />
 
@@ -293,6 +294,7 @@
             android:layout_marginTop="15dp"
             android:background="@android:color/holo_blue_bright"
             android:hint="déplacer le champ ici"
+            android:focusableInTouchMode="false"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="14sp"
@@ -324,7 +326,8 @@
             android:text="intrus :"
             android:textColor="@android:color/black"
             android:textSize="14sp"
-            android:typeface="serif" />
+            android:typeface="serif"
+            android:focusableInTouchMode="false"/>
 
         <EditText
             android:id="@+id/repintrus"
@@ -338,7 +341,8 @@
             android:hint="déplacer l'intrus ici"
             android:textAlignment="center"
             android:textSize="14sp"
-            android:typeface="serif" />
+            android:typeface="serif"
+            android:focusableInTouchMode="false"/>
 
         <TextView
             android:id="@+id/rep2"

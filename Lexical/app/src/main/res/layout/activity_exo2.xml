@@ -130,6 +130,7 @@
             android:layout_alignBaseline="@+id/n2"
             android:layout_alignBottom="@+id/n2"
             android:textSize="15dp"
+            android:focusableInTouchMode="false"
             android:text="Déplacez les mots dans les champs lexicaux correspondant" />
 
         <Button
@@ -294,6 +295,7 @@
             android:layout_alignStart="@+id/champ1"
             android:layout_below="@+id/champ1"
             android:background="@android:color/holo_blue_bright"
+            android:focusableInTouchMode="false"
             android:hint="zone de déplacement"
             android:textAlignment="center" />
 
@@ -304,6 +306,7 @@
             android:layout_alignStart="@+id/champ2"
             android:layout_below="@+id/champ2"
             android:background="@android:color/holo_blue_bright"
+            android:focusableInTouchMode="false"
             android:hint="zone de déplacement"
             android:textAlignment="center" />
 

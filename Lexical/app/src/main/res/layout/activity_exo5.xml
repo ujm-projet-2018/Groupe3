@@ -92,7 +92,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignStart="@+id/valider"
             android:layout_below="@+id/toolbar"
-            android:text="Niveau 5"
+            android:text="Nv 5"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <EditText
@@ -106,6 +106,7 @@
             android:layout_below="@+id/toolbar"
             android:textSize="15dp"
             android:text="Trouver l'intrus !"
+            android:focusableInTouchMode="false"
             android:visibility="visible" />
 
         <android.support.v7.widget.Toolbar
@@ -241,6 +242,7 @@
             android:layout_alignParentStart="true"
             android:ems="10"
             android:inputType="textPersonName"
+            android:focusableInTouchMode="false"
             android:text="intrus :" />
 
         <EditText
@@ -255,6 +257,7 @@
             android:textSize="14sp"
             android:typeface="serif"
             android:hint="déplacer l'intrus ici"
+            android:focusableInTouchMode="false"
             android:textAlignment="center" />
 
         <TextView

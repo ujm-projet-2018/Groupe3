@@ -119,7 +119,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignStart="@+id/valider"
             android:layout_below="@+id/toolbar"
-            android:text="Niveau 4"
+            android:text="Nv 4"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <EditText
@@ -130,6 +130,7 @@
             android:layout_alignBaseline="@+id/n4"
             android:layout_alignBottom="@+id/n4"
             android:textSize="15dp"
+            android:focusableInTouchMode="false"
             android:text="Déplacez les étiquettes sur les champs lexicaux correspondant " />
 
         <Button
@@ -398,6 +399,7 @@
             android:layout_below="@+id/question"
             android:background="@android:color/holo_blue_bright"
             android:hint="ICI"
+            android:focusableInTouchMode="false"
             android:textAlignment="center" />
 
         <EditText
@@ -409,6 +411,7 @@
             android:layout_toEndOf="@+id/rep1"
             android:background="@android:color/holo_blue_bright"
             android:hint="ICI"
+            android:focusableInTouchMode="false"
             android:textAlignment="center" />
 
         <EditText
@@ -420,6 +423,7 @@
             android:layout_toEndOf="@+id/rep2"
             android:background="@android:color/holo_blue_bright"
             android:hint="ICI"
+            android:focusableInTouchMode="false"
             android:textAlignment="center" />
 
         <TextView
