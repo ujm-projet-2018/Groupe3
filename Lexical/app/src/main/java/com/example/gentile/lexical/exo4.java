@@ -36,6 +36,7 @@ import okhttp3.Response;
 public class exo4 extends AppCompatActivity {
 
     String scriptExo4 = "http://lexical.hopto.org/lexical/exo4.php";
+    String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     EditText rep1,rep2,rep3;
     TextView nom_champ1,nom_champ2,nom_champ3,nom_champ4,nom_champ5;
     TextView mot1, mot2,mot3,mot4,mot5,mot6,mot7,mot8,mot9,mot10,mot11,mot12;
@@ -46,6 +47,9 @@ public class exo4 extends AppCompatActivity {
     public JSONObject jsonObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        intent.getStringExtra("prenom");
+        intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo4);
         rep1 = (EditText) findViewById(R.id.rep1);

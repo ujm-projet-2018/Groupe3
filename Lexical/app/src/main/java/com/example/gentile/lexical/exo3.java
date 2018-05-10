@@ -35,6 +35,7 @@ import okhttp3.Response;
 /* 5 mots correspondant a 1 champ, 4 nom possible  */
 public class exo3 extends AppCompatActivity {
     String scriptExo3 = "http://lexical.hopto.org/lexical/exo3.php";
+    String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     EditText rep1;
     TextView mot1,mot2,mot3,mot4,mot5;
     TextView champ1,champ2,champ3,champ4;
@@ -46,6 +47,9 @@ public class exo3 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        intent.getStringExtra("prenom");
+        intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo3);
         rep1 = (EditText) findViewById(R.id.repintrus);

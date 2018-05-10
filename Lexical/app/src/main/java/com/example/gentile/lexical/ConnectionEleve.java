@@ -53,8 +53,8 @@ public class ConnectionEleve extends AppCompatActivity {
             @Override
 
             public void onClick(View view) {
-                EditText identifiant = (EditText) findViewById(R.id.identifiantEleve);
-                EditText pass = (EditText) findViewById(R.id.passEleve);
+                final EditText identifiant = (EditText) findViewById(R.id.identifiantEleve);
+                final EditText pass = (EditText) findViewById(R.id.passEleve);
                 String strId = identifiant.toString();
                 String strPass = pass.toString();
                 if (identifiant.getText().toString().equals("") || pass.getText().toString().equals("")) {
@@ -101,6 +101,8 @@ public class ConnectionEleve extends AppCompatActivity {
                                         System.out.println(success);
                                         if (success == 1) {
                                             Intent intent = new Intent(ConnectionEleve.this, exo1.class);
+                                            intent.putExtra("prenom",identifiant.getText());
+                                            intent.putExtra("nom",pass.getText());
                                             startActivity(intent);
                                         } else {
                                             Toast.makeText(ConnectionEleve.this,

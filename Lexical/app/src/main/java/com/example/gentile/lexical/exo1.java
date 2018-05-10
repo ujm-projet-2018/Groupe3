@@ -37,18 +37,21 @@ import okhttp3.Response;
 public class exo1 extends AppCompatActivity {
 
     String scriptExo1 = "http://lexical.hopto.org/lexical/exo1.php";
+    String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     LinearLayout drop;
     TextView nom_champ;
     TextView mot1,mot2,mot3,mot4,mot5,mot6,mot7,mot8;
     Button valider;
     EditText color;
     ImageView etoileON1, etoileON2, etoileON3, etoileON4, etoileON5;
-    int nbrMotPlace;
     boolean juste_mot1=false,juste_mot2=false,juste_mot3=false,juste_mot4=false,juste_mot0=false;
     boolean erreur_intru1=false,erreur_intru2=false,erreur_intru3=false;
     public JSONObject jsonObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        intent.getStringExtra("prenom");
+        intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo1);
         drop = (LinearLayout) findViewById(R.id.drop);
@@ -281,7 +284,7 @@ public class exo1 extends AppCompatActivity {
 
                     if(ConnectionEleve.NbEtoileN1==5){
                         etoileON4.setVisibility(View.VISIBLE);
-                        Intent appel = new Intent(exo1.this, exo2.class);
+                       Intent appel = new Intent(exo1.this, exo2.class);
                         startActivity(appel);
                     }
                     else{
