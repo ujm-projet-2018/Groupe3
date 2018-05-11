@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -38,6 +39,7 @@ public class ConnectionEleve extends AppCompatActivity {
     public static int niveau = 0;
 
     String urlCoEleve = "http://lexical.hopto.org/lexical/connect.php";
+    String etoile = "http://lexical.hopto.org/lexical/etoiles.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,15 +100,80 @@ public class ConnectionEleve extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     try {
-                                        System.out.println(resp);
                                         JSONObject jsonObj = new JSONObject(resp);
                                         int success = jsonObj.getInt("success");
-                                        System.out.println(success);
                                         if (success == 1) {
+
+                                            //initialisation de la progression de l'eleve
+                                            OkHttpClient client = new OkHttpClient();
+                                            RequestBody formBody = new FormBody.Builder()
+                                                    .add("prenom", prenom)
+                                                    .add("nom", nom)
+                                                    .build();
+                                            Request request = new Request.Builder()
+                                                    .url(etoile)
+                                                    .post(formBody)
+                                                    .build();
+                                            client.newCall(request).enqueue(new Callback() {
+                                                @Override
+                                                public void onFailure(Call call, IOException e) {
+                                                    runOnUiThread(new Runnable() {
+                                                        public void run() {
+                                                            Toast.makeText(ConnectionEleve.this,
+                                                                    "Connection au serveur impossible.",
+                                                                    Toast.LENGTH_SHORT).show();
+                                                            return;
+                                                        }
+                                                    });
+                                                }
+
+                                                @Override
+                                                public void onResponse(Call call, Response response) throws IOException {
+                                                    JSONObject jsonObj = null;
+                                                    try {
+                                                        jsonObj = new JSONObject(resp);
+                                                        NbEtoileN1 = jsonObj.getInt("etoiles1"); // demander a guillaume
+                                                        NbEtoileN2 = jsonObj.getInt("etoiles2");
+                                                        NbEtoileN3 = jsonObj.getInt("etoiles3");
+                                                        NbEtoileN4 = jsonObj.getInt("etoiles4");
+                                                        NbEtoileN5 = jsonObj.getInt("etoiles5");
+                                                        NbEtoileN6 = jsonObj.getInt("etoiles6");
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            });
                                             Intent intent = new Intent(ConnectionEleve.this, exo1.class);
+                                            if(NbEtoileN1 < 5) {
+                                                intent = new Intent(ConnectionEleve.this, exo1.class);
+                                            }
+                                            else {
+                                                if (NbEtoileN2 < 5)
+                                                    intent = new Intent(ConnectionEleve.this, exo2.class);
+                                                else {
+                                                    if(NbEtoileN3 < 5)
+                                                        intent = new Intent(ConnectionEleve.this, exo3.class);
+                                                    else{
+                                                        if(NbEtoileN4 < 5)
+                                                            intent = new Intent(ConnectionEleve.this, exo4.class);
+                                                        else{
+                                                            if(NbEtoileN5 < 5)
+                                                                intent = new Intent(ConnectionEleve.this, exo5.class);
+                                                            else{
+                                                                if(NbEtoileN6 < 5)
+                                                                    intent = new Intent(ConnectionEleve.this, exo6.class);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+
+
                                             intent.putExtra("prenom",prenom);
                                             intent.putExtra("nom",nom);
                                             startActivity(intent);
+
                                         } else {
                                             Toast.makeText(ConnectionEleve.this,
                                                     "Identifiant ou mot de passe incorrects.",
