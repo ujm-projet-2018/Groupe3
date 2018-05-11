@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:hint="Identifiant"
+        android:hint="Prénom"
         android:textSize="25dp"
         />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:hint="Mot de passe"
+        android:hint="Nom de famille"
         android:textSize="25dp"
         />
 
