@@ -287,7 +287,6 @@ public class exo1 extends AppCompatActivity {
                 }
 
                 OkHttpClient client = new OkHttpClient();
-                nom = "patural";
                 RequestBody formBody = new FormBody.Builder()
                         .add("eleveExo1", "eleveexo1 Wh")
                         .add("nom", nom)
