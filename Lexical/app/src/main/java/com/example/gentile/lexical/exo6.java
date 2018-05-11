@@ -34,7 +34,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class exo6 extends AppCompatActivity {
-
+    String prenom;
+    String nom;
     String scriptExo6 = "http://lexical.hopto.org/lexical/exo6.php";
     String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     EditText rep_champ,rep_intru;
@@ -53,8 +54,8 @@ public class exo6 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        intent.getStringExtra("prenom");
-        intent.getStringExtra("nom");
+        prenom = intent.getStringExtra("prenom");
+        nom = intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo6);
         rep_champ = (EditText) findViewById(R.id.nom_champ);
@@ -254,10 +255,14 @@ public class exo6 extends AppCompatActivity {
                     if(ConnectionEleve.NbEtoileN6>2) {
                         etoileON3.setVisibility(View.VISIBLE);
                         Intent appel = new Intent(exo6.this, reussi.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     else{
                         Intent appel = new Intent(exo6.this, exo6.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -265,10 +270,14 @@ public class exo6 extends AppCompatActivity {
                     ConnectionEleve.NbErreurN6++;
                     if(ConnectionEleve.NbErreurN6<5){
                         Intent appel = new Intent(exo6.this, gameOverExo1.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     if(ConnectionEleve.NbErreurN6>=5){
                         Intent appel = new Intent(exo6.this, aide.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -288,5 +297,8 @@ public class exo6 extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }

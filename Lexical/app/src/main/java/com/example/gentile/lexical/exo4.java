@@ -34,7 +34,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class exo4 extends AppCompatActivity {
-
+    String prenom;
+    String nom;
     String scriptExo4 = "http://lexical.hopto.org/lexical/exo4.php";
     String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     EditText rep1,rep2,rep3;
@@ -48,8 +49,8 @@ public class exo4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        intent.getStringExtra("prenom");
-        intent.getStringExtra("nom");
+        prenom = intent.getStringExtra("prenom");
+        nom = intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo4);
         rep1 = (EditText) findViewById(R.id.rep1);
@@ -151,7 +152,7 @@ public class exo4 extends AppCompatActivity {
                             for(int i=0;i<12;i++) {
                                 String nom_mot = jsonObj.getString("mot"+i);
                                 listMot.get(place).setText(nom_mot);
-                                place++;
+                                place+=3;
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -296,10 +297,14 @@ public class exo4 extends AppCompatActivity {
                     if(ConnectionEleve.NbEtoileN4==5){
                         etoileON5.setVisibility(View.VISIBLE);
                         Intent appel = new Intent(exo4.this, exo5.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     else{
                         Intent appel = new Intent(exo4.this, exo4.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -307,10 +312,14 @@ public class exo4 extends AppCompatActivity {
                     ConnectionEleve.NbErreurN4++;
                     if(ConnectionEleve.NbErreurN4<5){
                         Intent appel = new Intent(exo4.this, gameOverExo1.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     if(ConnectionEleve.NbErreurN4>=5){
                         Intent appel = new Intent(exo4.this, aide.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -330,5 +339,8 @@ public class exo4 extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }

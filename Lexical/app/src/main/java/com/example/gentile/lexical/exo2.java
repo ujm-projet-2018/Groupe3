@@ -35,7 +35,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class exo2 extends AppCompatActivity {
-
+    String prenom;
+    String nom;
     String scriptExo2 = "http://lexical.hopto.org/lexical/exo2.php";
     String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     EditText rep1, rep2;
@@ -48,8 +49,8 @@ public class exo2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        intent.getStringExtra("prenom");
-        intent.getStringExtra("nom");
+        prenom = intent.getStringExtra("prenom");
+        nom = intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo2);
         rep1 = (EditText) findViewById(R.id.rep1);
@@ -131,7 +132,7 @@ public class exo2 extends AppCompatActivity {
                             for(int i=0;i<8;i++) {
                                 String nom_mot = jsonObj.getString("mot"+i);
                                 listMot.get(place%8).setText(nom_mot);
-                                place++;
+                                place+=3;
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -272,30 +273,66 @@ public class exo2 extends AppCompatActivity {
 
         valider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ConnectionEleve.niveau=2;
-                if(juste_mot0==true && juste_mot1==true && juste_mot2==true && juste_mot3==true
-                        && juste_mot4==true && juste_mot5==true && juste_mot6==true && juste_mot7==true ){
-                    ConnectionEleve.NbEtoileN2++;
-                    if(ConnectionEleve.NbEtoileN2==5){
-                        Intent appel = new Intent(exo2.this, exo3.class);
-                        startActivity(appel);
-                    }
-                    else{
-                        Intent appel = new Intent(exo2.this, exo2.class);
-                        startActivity(appel);
-                    }
+                String gagner;
+                if (juste_mot0 == true && juste_mot1 == true && juste_mot2 == true && juste_mot3 == true
+                        && juste_mot4 == true && juste_mot5 == true && juste_mot6 == true && juste_mot7 == true) {
+                    gagner = "0";
+                } else {
+                    gagner = "1";
                 }
-                else{
-                    ConnectionEleve.NbErreurN2++;
-                    if(ConnectionEleve.NbErreurN2<5){
-                        Intent appel = new Intent(exo2.this, gameOverExo1.class);
-                        startActivity(appel);
+                OkHttpClient client = new OkHttpClient();
+                RequestBody formBody = new FormBody.Builder()
+                        .add("eleveExo2", "eleveexo2 Wh")
+                        .add("nom", nom)
+                        .add("prenom", prenom)
+                        .add("gagne", gagner)
+                        .add("exercice", "2")
+                        .build();
+                Request request = new Request.Builder()
+                        .url(scriptScore)
+                        .post(formBody)
+                        .build();
+                client.newCall(request).enqueue(new Callback() {
+
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
                     }
-                    if(ConnectionEleve.NbErreurN2>=5){
-                        Intent appel = new Intent(exo2.this, aide.class);
-                        startActivity(appel);
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        ConnectionEleve.niveau = 2;
+                        if (juste_mot0 == true && juste_mot1 == true && juste_mot2 == true && juste_mot3 == true
+                                && juste_mot4 == true && juste_mot5 == true && juste_mot6 == true && juste_mot7 == true) {
+                            ConnectionEleve.NbEtoileN2++;
+                            if (ConnectionEleve.NbEtoileN2 == 5) {
+                                Intent appel = new Intent(exo2.this, exo3.class);
+                                appel.putExtra("prenom", prenom);
+                                appel.putExtra("nom", nom);
+                                startActivity(appel);
+                            } else {
+                                Intent appel = new Intent(exo2.this, exo2.class);
+                                appel.putExtra("prenom", prenom);
+                                appel.putExtra("nom", nom);
+                                startActivity(appel);
+                            }
+                        } else {
+                            ConnectionEleve.NbErreurN2++;
+                            if (ConnectionEleve.NbErreurN2 < 5) {
+                                Intent appel = new Intent(exo2.this, gameOverExo1.class);
+                                appel.putExtra("prenom", prenom);
+                                appel.putExtra("nom", nom);
+                                startActivity(appel);
+                            }
+                            if (ConnectionEleve.NbErreurN2 >= 5) {
+                                Intent appel = new Intent(exo2.this, aide.class);
+                                appel.putExtra("prenom", prenom);
+                                appel.putExtra("nom", nom);
+                                startActivity(appel);
+                            }
+                        }
                     }
-                }
+                });
             }
         });
     }
@@ -312,5 +349,8 @@ public class exo2 extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }

@@ -34,7 +34,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class exo5 extends AppCompatActivity {
-
+    String prenom;
+    String nom;
     String scriptExo5 = "http://lexical.hopto.org/lexical/exo5.php";
     String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     EditText rep1;
@@ -53,8 +54,8 @@ public class exo5 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        intent.getStringExtra("prenom");
-        intent.getStringExtra("nom");
+        prenom = intent.getStringExtra("prenom");
+        nom = intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo5);
         rep1 = (EditText) findViewById(R.id.repintrus);
@@ -195,10 +196,14 @@ public class exo5 extends AppCompatActivity {
                     if(ConnectionEleve.NbEtoileN5>3) {
                         etoileON4.setVisibility(View.VISIBLE);
                         Intent appel = new Intent(exo5.this, exo6.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     else{
                         Intent appel = new Intent(exo5.this, exo5.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -206,10 +211,14 @@ public class exo5 extends AppCompatActivity {
                     ConnectionEleve.NbErreurN5++;
                     if(ConnectionEleve.NbErreurN5<5){
                         Intent appel = new Intent(exo5.this, gameOverExo1.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     if(ConnectionEleve.NbErreurN5>=5){
                         Intent appel = new Intent(exo5.this, aide.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -229,5 +238,8 @@ public class exo5 extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }

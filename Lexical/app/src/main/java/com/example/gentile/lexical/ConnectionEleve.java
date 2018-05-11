@@ -21,7 +21,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ConnectionEleve extends AppCompatActivity {
-
+    public String prenom;
+    public String nom;
     public static int NbEtoileN1 = 0;
     public static int NbEtoileN2=0;
     public static int NbEtoileN3=0;
@@ -63,10 +64,12 @@ public class ConnectionEleve extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     return;
                 } else {
+                    prenom = identifiant.getText().toString();
+                    nom = pass.getText().toString();
                     OkHttpClient client = new OkHttpClient();
                     RequestBody formBody = new FormBody.Builder()
-                            .add("identifiant", identifiant.getText().toString())
-                            .add("pass", pass.getText().toString())
+                            .add("identifiant", prenom)
+                            .add("pass", nom)
                             .add("type", "eleve")
                             .build();
                     Request request = new Request.Builder()
@@ -101,8 +104,8 @@ public class ConnectionEleve extends AppCompatActivity {
                                         System.out.println(success);
                                         if (success == 1) {
                                             Intent intent = new Intent(ConnectionEleve.this, exo1.class);
-                                            intent.putExtra("prenom",identifiant.getText());
-                                            intent.putExtra("nom",pass.getText());
+                                            intent.putExtra("prenom",prenom);
+                                            intent.putExtra("nom",nom);
                                             startActivity(intent);
                                         } else {
                                             Toast.makeText(ConnectionEleve.this,

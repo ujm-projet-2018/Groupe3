@@ -35,7 +35,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class exo1 extends AppCompatActivity {
-
+    public String prenom;
+    public String nom;
     String scriptExo1 = "http://lexical.hopto.org/lexical/exo1.php";
     String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
     LinearLayout drop;
@@ -50,8 +51,8 @@ public class exo1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        intent.getStringExtra("prenom");
-        intent.getStringExtra("nom");
+        prenom = intent.getStringExtra("prenom");
+        nom = intent.getStringExtra("nom");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exo1);
         drop = (LinearLayout) findViewById(R.id.drop);
@@ -127,14 +128,16 @@ public class exo1 extends AppCompatActivity {
                             int place = (int) (Math.random()*7);
                             //on met les bon mot dans la liste
                             for(int i=0;i<5;i++) {
-                                String nom_mot = jsonObj.getString("mot"+i);
-                                listMot.get(place%8).setText(nom_mot);
-                                place++;
+                                String nom_mot = jsonObj.getString("mot" + i);
+                                listMot.get(place).setText(nom_mot);
+                                place+=3;
+                                place%=8;
                             }
                             for(int i=1;i<4;i++) {
                                 String nom_mot = jsonObj.getString("intru"+i);
-                                listMot.get(place % 8).setText(nom_mot);
-                                place++;
+                                listMot.get(place).setText(nom_mot);
+                                place+=3;
+                                place%=8;
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -275,20 +278,46 @@ public class exo1 extends AppCompatActivity {
 
         valider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ConnectionEleve.niveau=1;
-               // if(!erreur && nbrMotPlace>=5 && juste_rep1==true){
+                String gagner;
+                if (juste_mot0 == true && juste_mot1 == true && juste_mot2 == true && juste_mot3 == true && juste_mot4 == true
+                        && erreur_intru1 == false && erreur_intru2 == false && erreur_intru3 == false) {
+                    gagner = "0";
+                } else {
+                    gagner = "1";
+                }
+
+                OkHttpClient client = new OkHttpClient();
+                nom = "patural";
+                RequestBody formBody = new FormBody.Builder()
+                        .add("eleveExo1", "eleveexo1 Wh")
+                        .add("nom", nom)
+                        .add("prenom", prenom)
+                        .add("gagne", gagner)
+                        .add("exercice", "1")
+                        .build();
+                Request request = new Request.Builder()
+                        .url(scriptScore)
+                        .post(formBody)
+                        .build();
+                client.newCall(request);
+
+                ConnectionEleve.niveau = 1;
                 if(juste_mot0==true && juste_mot1==true && juste_mot2==true && juste_mot3==true && juste_mot4==true
-                        && erreur_intru1==false && erreur_intru2==false && erreur_intru3==false){
+                                                                    && erreur_intru1==false && erreur_intru2==false && erreur_intru3==false){
                     //gagner
                     ConnectionEleve.NbEtoileN1+=1;
 
                     if(ConnectionEleve.NbEtoileN1==5){
                         etoileON4.setVisibility(View.VISIBLE);
-                       Intent appel = new Intent(exo1.this, exo2.class);
+                        Intent appel = new Intent(exo1.this, exo2.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     else{
                         Intent appel = new Intent(exo1.this, exo1.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -296,10 +325,14 @@ public class exo1 extends AppCompatActivity {
                     ConnectionEleve.NbErreurN1++;
                     if(ConnectionEleve.NbErreurN1<5){
                         Intent appel = new Intent(exo1.this, gameOverExo1.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                     if(ConnectionEleve.NbErreurN1>=5){
                         Intent appel = new Intent(exo1.this, aide.class);
+                        appel.putExtra("prenom", prenom);
+                        appel.putExtra("nom", nom);
                         startActivity(appel);
                     }
                 }
@@ -319,5 +352,8 @@ public class exo1 extends AppCompatActivity {
             }
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }
