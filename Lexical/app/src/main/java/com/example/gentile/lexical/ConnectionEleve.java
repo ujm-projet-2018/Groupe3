@@ -129,51 +129,56 @@ public class ConnectionEleve extends AppCompatActivity {
 
                                                 @Override
                                                 public void onResponse(Call call, Response response) throws IOException {
-                                                    JSONObject jsonObj = null;
-                                                    try {
-                                                        jsonObj = new JSONObject(resp);
-                                                        NbEtoileN1 = jsonObj.getInt("etoiles1"); // demander a guillaume
-                                                        NbEtoileN2 = jsonObj.getInt("etoiles2");
-                                                        NbEtoileN3 = jsonObj.getInt("etoiles3");
-                                                        NbEtoileN4 = jsonObj.getInt("etoiles4");
-                                                        NbEtoileN5 = jsonObj.getInt("etoiles5");
-                                                        NbEtoileN6 = jsonObj.getInt("etoiles6");
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
+                                                    final String respo = response.body().string().toString();
+                                                    runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            try {
+                                                                System.out.println(respo);
+                                                                JSONObject jsonObject = new JSONObject(respo);
+                                                                NbEtoileN1 = jsonObject.getInt("etoiles1");
+                                                                NbEtoileN2 = jsonObject.getInt("etoiles2");
+                                                                NbEtoileN3 = jsonObject.getInt("etoiles3");
+                                                                NbEtoileN4 = jsonObject.getInt("etoiles4");
+                                                                NbEtoileN5 = jsonObject.getInt("etoiles5");
+                                                                NbEtoileN6 = jsonObject.getInt("etoiles6");
+                                                                System.out.println(NbEtoileN1);
+                                                            } catch (JSONException e) {
+                                                                e.printStackTrace();
+                                                            }
+                                                            Intent intent;
+                                                            if(NbEtoileN1< 5){
+                                                                intent = new Intent(ConnectionEleve.this, exo1.class);
+                                                            }
+                                                            else {
+                                                                if (NbEtoileN2 < 5)
+                                                                    intent = new Intent(ConnectionEleve.this, exo2.class);
+                                                                else {
+                                                                    if (NbEtoileN3 < 5)
+                                                                        intent = new Intent(ConnectionEleve.this, exo3.class);
+                                                                    else {
+                                                                        if (NbEtoileN4 < 5)
+                                                                            intent = new Intent(ConnectionEleve.this, exo4.class);
+                                                                        else {
+                                                                            if (NbEtoileN5 < 5)
+                                                                                intent = new Intent(ConnectionEleve.this, exo5.class);
+                                                                            else {
+                                                                                if (NbEtoileN6 < 5)
+                                                                                    intent = new Intent(ConnectionEleve.this, exo6.class);
+                                                                                else
+                                                                                    intent = new Intent(ConnectionEleve.this, exo1.class);
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            intent.putExtra("prenom",prenom);
+                                                            intent.putExtra("nom",nom);
+                                                            startActivity(intent);
+                                                        }
+                                                    });
                                                 }
                                             });
-                                            Intent intent = new Intent(ConnectionEleve.this, exo1.class);
-                                            if(NbEtoileN1 < 5) {
-                                                intent = new Intent(ConnectionEleve.this, exo1.class);
-                                            }
-                                            else {
-                                                if (NbEtoileN2 < 5)
-                                                    intent = new Intent(ConnectionEleve.this, exo2.class);
-                                                else {
-                                                    if(NbEtoileN3 < 5)
-                                                        intent = new Intent(ConnectionEleve.this, exo3.class);
-                                                    else{
-                                                        if(NbEtoileN4 < 5)
-                                                            intent = new Intent(ConnectionEleve.this, exo4.class);
-                                                        else{
-                                                            if(NbEtoileN5 < 5)
-                                                                intent = new Intent(ConnectionEleve.this, exo5.class);
-                                                            else{
-                                                                if(NbEtoileN6 < 5)
-                                                                    intent = new Intent(ConnectionEleve.this, exo6.class);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-
-
-                                            intent.putExtra("prenom",prenom);
-                                            intent.putExtra("nom",nom);
-                                            startActivity(intent);
-
                                         } else {
                                             Toast.makeText(ConnectionEleve.this,
                                                     "Identifiant ou mot de passe incorrects.",
@@ -182,7 +187,6 @@ public class ConnectionEleve extends AppCompatActivity {
                                         }
                                     } catch (Exception e) {
                                         e.printStackTrace();
-
                                     }
                                 }
                             });
