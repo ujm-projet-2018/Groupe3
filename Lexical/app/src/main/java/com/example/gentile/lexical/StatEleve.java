@@ -102,12 +102,12 @@ public class StatEleve extends AppCompatActivity {
                                 niv6.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
                                 switch(nivEnCours){
-                                    case 1 : niv1.setHighlightColor(Color.BLUE); break;
-                                    case 2 : niv2.setHighlightColor(Color.BLUE); break;
-                                    case 3 : niv3.setHighlightColor(Color.BLUE); break;
-                                    case 4 : niv4.setHighlightColor(Color.BLUE); break;
-                                    case 5 : niv5.setHighlightColor(Color.BLUE); break;
-                                    case 6 : niv6.setHighlightColor(Color.BLUE); break;
+                                    case 1 : niv1.setTextColor(Color.WHITE); break;
+                                    case 2 : niv2.setTextColor(Color.WHITE); break;
+                                    case 3 : niv3.setTextColor(Color.WHITE); break;
+                                    case 4 : niv4.setTextColor(Color.WHITE); break;
+                                    case 5 : niv5.setTextColor(Color.WHITE); break;
+                                    case 6 : niv6.setTextColor(Color.WHITE); break;
                                 }
 
                                 tableRow.addView(nom);
