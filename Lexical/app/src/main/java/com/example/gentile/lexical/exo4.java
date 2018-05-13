@@ -137,22 +137,68 @@ public class exo4 extends AppCompatActivity {
                         try {
                             System.out.println(resp);
                             jsonObj = new JSONObject(resp);
-                            String champ_lex = jsonObj.getString("champ0");
-                            nom_champ1.setText(champ_lex);
-                            String champ_lex2 = jsonObj.getString("champ1");
-                            nom_champ2.setText(champ_lex2);
-                            String champ_lex3 = jsonObj.getString("champ2");
-                            nom_champ3.setText(champ_lex3);
-                            String champ_lex4 = jsonObj.getString("intru0");
-                            nom_champ4.setText(champ_lex4);
-                            String champ_lex5 = jsonObj.getString("intru1");
-                            nom_champ5.setText(champ_lex5);
+                            int alea = (int) Math.random()%5;
+                            String champ_lex, champ_lex2, champ_lex3, champ_lex4, champ_lex5;
+                            switch(alea){
+                                case 0 :
+                                    champ_lex = jsonObj.getString("champ0");
+                                    nom_champ1.setText(champ_lex);
+                                    champ_lex2 = jsonObj.getString("champ1");
+                                    nom_champ2.setText(champ_lex2);
+                                    champ_lex3 = jsonObj.getString("champ2");
+                                    nom_champ3.setText(champ_lex3);
+                                    champ_lex4 = jsonObj.getString("intru0");
+                                    nom_champ4.setText(champ_lex4);
+                                    champ_lex5 = jsonObj.getString("intru1");
+                                    nom_champ5.setText(champ_lex5); break;
+                                case 1 :champ_lex = jsonObj.getString("champ0");
+                                    nom_champ2.setText(champ_lex);
+                                    champ_lex2 = jsonObj.getString("champ1");
+                                    nom_champ3.setText(champ_lex2);
+                                    champ_lex3 = jsonObj.getString("champ2");
+                                    nom_champ1.setText(champ_lex3);
+                                    champ_lex4 = jsonObj.getString("intru0");
+                                    nom_champ4.setText(champ_lex4);
+                                    champ_lex5 = jsonObj.getString("intru1");
+                                    nom_champ5.setText(champ_lex5); break;
+                                case 2 :champ_lex = jsonObj.getString("champ0");
+                                    nom_champ1.setText(champ_lex);
+                                    champ_lex2 = jsonObj.getString("champ1");
+                                    nom_champ4.setText(champ_lex2);
+                                    champ_lex3 = jsonObj.getString("champ2");
+                                    nom_champ2.setText(champ_lex3);
+                                    champ_lex4 = jsonObj.getString("intru0");
+                                    nom_champ3.setText(champ_lex4);
+                                    champ_lex5 = jsonObj.getString("intru1");
+                                    nom_champ5.setText(champ_lex5); break;
+                                case 3 :champ_lex = jsonObj.getString("champ0");
+                                    nom_champ5.setText(champ_lex);
+                                    champ_lex2 = jsonObj.getString("champ1");
+                                    nom_champ2.setText(champ_lex2);
+                                    champ_lex3 = jsonObj.getString("champ2");
+                                    nom_champ4.setText(champ_lex3);
+                                    champ_lex4 = jsonObj.getString("intru0");
+                                    nom_champ1.setText(champ_lex4);
+                                    champ_lex5 = jsonObj.getString("intru1");
+                                    nom_champ3.setText(champ_lex5); break;
+                                case 4 :champ_lex = jsonObj.getString("champ0");
+                                    nom_champ4.setText(champ_lex);
+                                    champ_lex2 = jsonObj.getString("champ1");
+                                    nom_champ5.setText(champ_lex2);
+                                    champ_lex3 = jsonObj.getString("champ2");
+                                    nom_champ2.setText(champ_lex3);
+                                    champ_lex4 = jsonObj.getString("intru0");
+                                    nom_champ1.setText(champ_lex4);
+                                    champ_lex5 = jsonObj.getString("intru1");
+                                    nom_champ3.setText(champ_lex5); break;
+                            }
+
                             int place = 0;
                             //on met les bon mot dans la liste
                             for(int i=0;i<12;i++) {
                                 String nom_mot = jsonObj.getString("mot"+i);
                                 listMot.get(place).setText(nom_mot);
-                                place+=3;
+                                place++;
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
