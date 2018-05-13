@@ -110,6 +110,7 @@ public class StatEleve extends AppCompatActivity {
                                     case 6 : niv6.setTextColor(Color.WHITE); break;
                                 }
 
+                                tableRow.addView(new TextView(StatEleve.this));
                                 tableRow.addView(nom);
                                 tableRow.addView(prenom);
                                 tableRow.addView(niv1);
