@@ -226,7 +226,6 @@ public class exo3 extends AppCompatActivity {
                             ConnectionEleve.NbEtoileN3 += 1;
 
                             if (ConnectionEleve.NbEtoileN3 == 5) {
-                                etoileON5.setVisibility(View.VISIBLE);
                                 Intent appel = new Intent(exo3.this, exo4.class);
                                 appel.putExtra("prenom", prenom);
                                 appel.putExtra("nom", nom);
