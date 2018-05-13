@@ -22,14 +22,14 @@ CREATE TABLE IF NOT EXISTS Professeur(
 CREATE TABLE IF NOT EXISTS Resultat (
        id_resultat INT NOT NULL AUTO_INCREMENT,
        niveau INT NOT NULL,
-       resultat BOOLEAN NOT NULL,
+       resultat INT NOT NULL,
        PRIMARY KEY (id_resultat)
 );
 
 CREATE TABLE IF NOT EXISTS Obtient (
        id_eleve INT NOT NULL,
        id_resultat INT NOT NULL,
-       date INT NOT NULL,
+       date DATE NOT NULL,
        num_essai INT NOT NULL,
        FOREIGN KEY (id_eleve) REFERENCES Eleve(id_eleve),
        FOREIGN KEY (id_resultat) REFERENCES Resultat(id_resultat)
@@ -48,4 +48,10 @@ CREATE TABLE IF NOT EXISTS Champ_lexical(
        classe INT NOT NULL,
        PRIMARY KEY (id_champ)
 );
-       
+
+CREATE TABLE IF NOT EXISTS Appartient(
+       id_mot INT NOT NULL,
+       id_champ INT NOT NULL,
+       FOREIGN KEY (id_mot) REFERENCES Mot(id_mot),
+       FOREIGN KEY (id_champ) REFERENCES Champ_lexical(id_champ)
+);
