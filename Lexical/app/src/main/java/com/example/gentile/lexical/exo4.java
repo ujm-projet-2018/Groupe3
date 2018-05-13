@@ -137,7 +137,7 @@ public class exo4 extends AppCompatActivity {
                         try {
                             System.out.println(resp);
                             jsonObj = new JSONObject(resp);
-                            int alea = (int) Math.random()%5;
+                            int alea = (int) Math.random()*5;
                             String champ_lex, champ_lex2, champ_lex3, champ_lex4, champ_lex5;
                             switch(alea){
                                 case 0 :
