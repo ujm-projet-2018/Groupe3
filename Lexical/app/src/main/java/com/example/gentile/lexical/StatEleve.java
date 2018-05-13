@@ -7,67 +7,126 @@ import android.os.Bundle;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class StatEleve extends AppCompatActivity {
+
+    String urlProgres = "http://lexical.hopto.org/lexical/res_prof.php";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_stat_eleve);
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.Table);
-        for (int i = 0; i < 25; i++) {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody formBody = new FormBody.Builder()
+                .build();
+        Request request = new Request.Builder()
+                .url(urlProgres)
+                .post(formBody)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(StatEleve.this,
+                                "Connection au serveur impossible.",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                });
+            }
 
-            TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
 
-            if(i%2==0)
-                tableRow.setBackgroundColor(Color.GREEN);
-            else
-                tableRow.setBackgroundColor(Color.GRAY);
+                final String resp = response.body().string().toString();
 
-            TextView text1 = new TextView(this);
-            TextView text2 = new TextView(this);
-            TextView text3 = new TextView(this);
-            TextView text4 = new TextView(this);
-            TextView text5 = new TextView(this);
-            TextView text6 = new TextView(this);
-            TextView text7 = new TextView(this);
-            TextView text8 = new TextView(this);
-            text1.setText("Test" + i);
-            text1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            text2.setText("Test" + i);
-            text2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            text3.setText("Test" + i);
-            text3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            text4.setText("Test" + i);
-            text4.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            text5.setText("Test" + i);
-            text5.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            text6.setText("Test" + i);
-            text6.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            text7.setText("Test" + i);
-            text7.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            text8.setText("Test" + i);
-            text8.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject jsonObj = new JSONObject(resp);
+                            int nombre = jsonObj.getInt("nb_eleves");
+                            TableLayout tableLayout = (TableLayout) findViewById(R.id.Table);
+                            for (int i = 0; i < nombre; i++) {
 
-            // Creation button
-          /*  final Button button = new Button(this);
-            button.setText("Delete");
-            button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    final TableRow parent = (TableRow) v.getParent();
-                    tableLayout.removeView(parent);
-                }
-            });*/
-            tableRow.addView(text1);
-            tableRow.addView(text2);
-            tableRow.addView(text3);
-            tableRow.addView(text4);
-            tableRow.addView(text5);
-            tableRow.addView(text6);
-            tableRow.addView(text7);
-            tableRow.addView(text8);
-         //   tableRow.addView(button);
-            tableLayout.addView(tableRow);
-        }
+                                TableRow tableRow = new TableRow(StatEleve.this);
+                                tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+                                if (i % 2 == 0)
+                                    tableRow.setBackgroundColor(Color.GREEN);
+                                else
+                                    tableRow.setBackgroundColor(Color.GRAY);
+
+                                TextView nom = new TextView(StatEleve.this);
+                                TextView prenom = new TextView(StatEleve.this);
+                                TextView niv1 = new TextView(StatEleve.this);
+                                TextView niv2 = new TextView(StatEleve.this);
+                                TextView niv3 = new TextView(StatEleve.this);
+                                TextView niv4 = new TextView(StatEleve.this);
+                                TextView niv5 = new TextView(StatEleve.this);
+                                TextView niv6 = new TextView(StatEleve.this);
+
+                                int nivEnCours = jsonObj.getInt(i + "niveau en cours : ");
+
+                                nom.setText(jsonObj.getString("nom" + i));
+                                nom.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                                prenom.setText(jsonObj.getString("prenom" + i));
+                                prenom.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                                niv1.setText(jsonObj.getString(i + "essai1"));
+                                niv1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                                niv2.setText(jsonObj.getString(i + "essai2"));
+                                niv2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                                niv3.setText(jsonObj.getString(i + "essai3"));
+                                niv3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                                niv4.setText(jsonObj.getString(i + "essai4"));
+                                niv4.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                                niv5.setText(jsonObj.getString(i + "essai5"));
+                                niv5.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                                niv6.setText(jsonObj.getString(i + "essai6"));
+                                niv6.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+                                switch(nivEnCours){
+                                    case 1 : niv1.setHighlightColor(Color.BLUE); break;
+                                    case 2 : niv2.setHighlightColor(Color.BLUE); break;
+                                    case 3 : niv3.setHighlightColor(Color.BLUE); break;
+                                    case 4 : niv4.setHighlightColor(Color.BLUE); break;
+                                    case 5 : niv5.setHighlightColor(Color.BLUE); break;
+                                    case 6 : niv6.setHighlightColor(Color.BLUE); break;
+                                }
+
+                                tableRow.addView(nom);
+                                tableRow.addView(prenom);
+                                tableRow.addView(niv1);
+                                tableRow.addView(niv2);
+                                tableRow.addView(niv3);
+                                tableRow.addView(niv4);
+                                tableRow.addView(niv5);
+                                tableRow.addView(niv6);
+                                tableLayout.addView(tableRow);
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
     }
 }
