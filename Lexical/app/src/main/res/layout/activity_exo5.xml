@@ -15,113 +15,117 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@android:color/holo_purple"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:background="@android:color/holo_purple" />
 
         <ImageView
-            android:id="@+id/n3etoile1"
+            android:id="@+id/etoile1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/toolbar"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="131dp"
+            android:layout_alignStart="@+id/toolbar2"
             app:srcCompat="@android:drawable/btn_star_big_off" />
 
         <ImageView
-            android:id="@+id/n3etoile2"
+            android:id="@+id/etoile2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/toolbar"
-            android:layout_marginStart="44dp"
-            android:layout_toEndOf="@+id/n3etoile1"
+            android:layout_alignStart="@+id/etoileON2"
             app:srcCompat="@android:drawable/btn_star_big_off" />
 
         <ImageView
-            android:id="@+id/n3etoile3"
+            android:id="@+id/etoile3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/toolbar"
-            android:layout_centerHorizontal="true"
+            android:layout_alignEnd="@+id/champ1"
             app:srcCompat="@android:drawable/btn_star_big_off" />
 
         <ImageView
-            android:id="@+id/n3etoile4"
+            android:id="@+id/etoile4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/toolbar"
-            android:layout_marginStart="43dp"
-            android:layout_toEndOf="@+id/n3etoile3"
+            android:layout_alignStart="@+id/etoileON4"
             app:srcCompat="@android:drawable/btn_star_big_off" />
 
         <ImageView
-            android:id="@+id/n3etoile5"
+            android:id="@+id/etoileON1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/toolbar"
-            android:layout_marginStart="40dp"
-            android:layout_toEndOf="@+id/n3etoile4"
-            app:srcCompat="@android:drawable/btn_star_big_off" />
+            android:layout_alignStart="@+id/etoile1"
+            android:visibility="invisible"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <ImageView
+            android:id="@+id/etoileON2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_alignStart="@+id/champ1"
+            android:visibility="invisible"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <ImageView
+            android:id="@+id/etoileON3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_alignStart="@+id/etoile3"
+            android:visibility="invisible"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <ImageView
+            android:id="@+id/etoileON4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_alignEnd="@+id/toolbar2"
+            android:visibility="invisible"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <TextView
-            android:id="@+id/n3"
+            android:id="@+id/n5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignStart="@+id/bouttonn3"
+            android:layout_alignStart="@+id/valider"
             android:layout_below="@+id/toolbar"
-            android:text="Niveau 3"
+            android:text="Nv 5"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <EditText
-            android:id="@+id/questionn3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/n3"
-            android:layout_marginEnd="45dp"
-            android:layout_toStartOf="@+id/n3"
-            android:ems="10"
+            android:id="@+id/question"
             android:inputType="textPersonName"
-            android:text="Ecrivez le nom du champ lexical qui correspond à ses mots." />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/n5"
+            android:layout_alignBottom="@+id/n5"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar"
+            android:textSize="15dp"
+            android:text="Trouver l'intrus !"
+            android:focusableInTouchMode="false"
+            android:visibility="visible" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="400dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/questionn3"
+            android:layout_height="30dp"
+            android:layout_below="@+id/question"
+            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
+            android:background="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/champ1"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/question"
             android:layout_marginTop="15dp"
-            android:background="@android:color/holo_red_light"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
-
-        <EditText
-            android:id="@+id/repn3"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_alignTop="@+id/toolbar2"
+            android:background="@android:color/holo_red_dark"
             android:layout_centerHorizontal="true"
-            android:hint="Ecrire ici"
-            android:textAlignment="center" />
-
-        <Button
-            android:id="@+id/bouttonn3"
-            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:background="?attr/colorPrimaryDark"
-            android:text="Valider" />
-
-        <TextView
-            android:id="@+id/mot1n3"
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/mot3n3"
-            android:layout_alignStart="@+id/toolbar2"
-            android:layout_marginBottom="12dp"
-            android:background="@android:color/darker_gray"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/black"
@@ -130,37 +134,7 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/mot2n3"
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/mot1n3"
-            android:layout_alignStart="@+id/mot1n3"
-            android:layout_marginBottom="14dp"
-            android:background="@android:color/darker_gray"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:typeface="serif"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/mot3n3"
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/bouttonn3"
-            android:layout_alignBottom="@+id/bouttonn3"
-            android:layout_alignStart="@+id/mot1n3"
-            android:background="@android:color/darker_gray"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:typeface="serif"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/mot4n3"
+            android:id="@+id/mot1"
             android:layout_width="195dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/toolbar2"
@@ -175,11 +149,41 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/mot5n3"
+            android:id="@+id/mot2"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mot1"
+            android:layout_marginTop="12dp"
+            android:layout_alignStart="@+id/toolbar2"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot3"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mot2"
+            android:layout_alignStart="@+id/mot1"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/darker_gray"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/mot4"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/mot4n3"
-            android:layout_alignBottom="@+id/mot4n3"
+            android:layout_alignBaseline="@+id/mot1"
+            android:layout_alignBottom="@+id/mot1"
             android:layout_alignEnd="@+id/toolbar2"
             android:background="@android:color/darker_gray"
             android:textAlignment="center"
@@ -190,12 +194,12 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/mot6n3"
+            android:id="@+id/mot5"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/mot2n3"
-            android:layout_alignBottom="@+id/mot2n3"
-            android:layout_alignStart="@+id/mot7n3"
+            android:layout_below="@+id/mot4"
+            android:layout_marginTop="12dp"
+            android:layout_alignEnd="@+id/toolbar2"
             android:background="@android:color/darker_gray"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -205,12 +209,12 @@
             android:visibility="visible" />
 
         <TextView
-            android:id="@+id/mot7n3"
+            android:id="@+id/mot6"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/mot1n3"
-            android:layout_alignBottom="@+id/mot1n3"
-            android:layout_alignStart="@+id/mot8n3"
+            android:layout_below="@+id/mot5"
+            android:layout_marginTop="12dp"
+            android:layout_alignEnd="@+id/toolbar2"
             android:background="@android:color/darker_gray"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -219,20 +223,56 @@
             android:typeface="serif"
             android:visibility="visible" />
 
+        <Button
+            android:id="@+id/valider"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorPrimary"
+            android:text="Valider" />
+
+        <EditText
+            android:id="@+id/intrus"
+            android:layout_width="60sp"
+            android:layout_height="50dp"
+            android:layout_alignBaseline="@+id/valider"
+            android:layout_alignBottom="@+id/valider"
+            android:layout_alignParentStart="true"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:focusableInTouchMode="false"
+            android:text="intrus :" />
+
+        <EditText
+            android:id="@+id/repintrus"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_alignBaseline="@+id/intrus"
+            android:layout_alignBottom="@+id/intrus"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/intrus"
+            android:background="@android:color/holo_blue_bright"
+            android:textSize="14sp"
+            android:typeface="serif"
+            android:hint="déplacer l'intrus ici"
+            android:focusableInTouchMode="false"
+            android:textAlignment="center" />
+
         <TextView
-            android:id="@+id/mot8n3"
+            android:id="@+id/intru"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/mot3n3"
-            android:layout_alignBottom="@+id/mot3n3"
-            android:layout_alignStart="@+id/mot5n3"
+            android:layout_alignBaseline="@+id/valider"
+            android:layout_alignStart="@+id/repintrus"
             android:background="@android:color/darker_gray"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:typeface="serif"
-            android:visibility="visible" />
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

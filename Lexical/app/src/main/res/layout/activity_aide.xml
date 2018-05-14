@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EBE7DE"
+
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Perdu, demande de l'aide a ton professeur"
+        android:textColor="#E54C44"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/recommencer"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Recommencer ?"
+        android:textColor="#EBE7DE"
+        android:textStyle="bold"
+        android:background="#E54C44"
+        />
+
+</LinearLayout>

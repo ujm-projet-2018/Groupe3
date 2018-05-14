@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Lexical</string>
+
+    <string name="classe">Classe associé au mot</string>
+
+    <string-array name="classe_choix">
+        <item>CM1</item>
+        <item>CM2</item>
+        <item>CM1/CM2</item>
+    </string-array>
+
 </resources>

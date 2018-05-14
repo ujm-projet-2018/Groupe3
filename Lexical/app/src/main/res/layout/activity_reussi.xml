@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EBE7DE">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:text="BRAVO !! Vous avez réussi tous les exercices."
+        android:textColor="#E54C44"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+</LinearLayout>

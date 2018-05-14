@@ -1,0 +1,29 @@
+<?php
+$response = array();
+if(empty($_POST["identifiant"]) || empty($_POST['pass'])){
+  echo "Le champ pseudo ou mot de passe est vide !";
+}
+else{
+  $identifiant = $_POST['identifiant'];
+  $pass = $_POST['pass'];
+  try{
+    $connexion=new PDO('mysql:host=lexical.hopto.org;dbname=projet_tut;charset=utf8','root','devweb4242');
+    $connexion -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  }
+  catch(Exeption $e){
+    die('erreur :'.$e->getMessage());
+  }
+
+  $requete = $connexion -> prepare("SELECT * FROM Professeur WHERE pseudo_prof = '".$identifiant."' AND mot_passe = '".$pass."'");
+  $requete ->bindParam('".username."', $username, PDO::PARAM_STR);
+  $requete ->bindParam('".password."', $password, PDO::PARAM_STR);
+  $requete -> EXECUTE();
+
+if( $tab=$requete->fetch())
+     $response["success"] = 1;
+  else
+  $response["success"]=0;  
+$requete->closeCursor();
+} 
+ 
+?>
