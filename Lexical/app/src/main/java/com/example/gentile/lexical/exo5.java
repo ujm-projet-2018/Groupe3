@@ -38,8 +38,6 @@ public class exo5 extends AppCompatActivity {
     String nom;
     String scriptExo5 = "http://lexical.hopto.org/lexical/exo5.php";
     String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
-    //String scriptExo5 = "http://applichamplex.000webhostapp.com/lexical/exo5.php";
-    //String scriptScore = "http://applichamplex.000webhostapp.com/lexical/score1.php";
     EditText rep1;
     TextView nom_champ1;
     TextView mot1;
@@ -191,39 +189,70 @@ public class exo5 extends AppCompatActivity {
 
         valider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ConnectionEleve.niveau=5;
-                if(juste==true){
-                    //gagner
-                    ConnectionEleve.NbEtoileN5++;
-                    if(ConnectionEleve.NbEtoileN5>3) {
-                        etoileON4.setVisibility(View.VISIBLE);
-                        Intent appel = new Intent(exo5.this, exo6.class);
-                        appel.putExtra("prenom", prenom);
-                        appel.putExtra("nom", nom);
-                        startActivity(appel);
+                String gagner;
+                if(juste==true)
+                    gagner = "0";
+                else
+                    gagner = "1";
+                OkHttpClient client = new OkHttpClient();
+                RequestBody formBody = new FormBody.Builder()
+                        .add("eleveExo5", "eleveexo5 Wh")
+                        .add("nom", nom)
+                        .add("prenom", prenom)
+                        .add("gagne", gagner)
+                        .add("exercice", "5")
+                        .build();
+                Request request = new Request.Builder()
+                        .url(scriptScore)
+                        .post(formBody)
+                        .build();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
                     }
-                    else{
-                        Intent appel = new Intent(exo5.this, exo5.class);
-                        appel.putExtra("prenom", prenom);
-                        appel.putExtra("nom", nom);
-                        startActivity(appel);
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ConnectionEleve.niveau = 5;
+                                if (juste == true) {
+                                    //gagner
+                                    ConnectionEleve.NbEtoileN5++;
+                                    if (ConnectionEleve.NbEtoileN5 > 3) {
+                                        etoileON4.setVisibility(View.VISIBLE);
+                                        Intent appel = new Intent(exo5.this, exo6.class);
+                                        appel.putExtra("prenom", prenom);
+                                        appel.putExtra("nom", nom);
+                                        startActivity(appel);
+                                    } else {
+                                        Intent appel = new Intent(exo5.this, exo5.class);
+                                        appel.putExtra("prenom", prenom);
+                                        appel.putExtra("nom", nom);
+                                        startActivity(appel);
+                                    }
+                                } else {
+                                    ConnectionEleve.NbErreurN5++;
+                                    if (ConnectionEleve.NbErreurN5 < 5) {
+                                        Intent appel = new Intent(exo5.this, gameOverExo1.class);
+                                        appel.putExtra("prenom", prenom);
+                                        appel.putExtra("nom", nom);
+                                        startActivity(appel);
+                                    }
+                                    if (ConnectionEleve.NbErreurN5 >= 5) {
+                                        Intent appel = new Intent(exo5.this, aide.class);
+                                        appel.putExtra("prenom", prenom);
+                                        appel.putExtra("nom", nom);
+                                        startActivity(appel);
+                                    }
+                                }
+                            }
+                        });
                     }
-                }
-                else{
-                    ConnectionEleve.NbErreurN5++;
-                    if(ConnectionEleve.NbErreurN5<5){
-                        Intent appel = new Intent(exo5.this, gameOverExo1.class);
-                        appel.putExtra("prenom", prenom);
-                        appel.putExtra("nom", nom);
-                        startActivity(appel);
-                    }
-                    if(ConnectionEleve.NbErreurN5>=5){
-                        Intent appel = new Intent(exo5.this, aide.class);
-                        appel.putExtra("prenom", prenom);
-                        appel.putExtra("nom", nom);
-                        startActivity(appel);
-                    }
-                }
+                });
+
             }
         });
     }
