@@ -38,7 +38,9 @@ public class exo1 extends AppCompatActivity {
     public String prenom;
     public String nom;
     String scriptExo1 = "http://lexical.hopto.org/lexical/exo1.php";
-    String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
+   String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
+    //String scriptExo1 = "http://applichamplex.000webhostapp.com/lexical/exo1.php";
+    //String scriptScore = "http://applichamplex.000webhostapp.com/lexical/score1.php";
     LinearLayout drop;
     TextView nom_champ;
     TextView mot1,mot2,mot3,mot4,mot5,mot6,mot7,mot8;

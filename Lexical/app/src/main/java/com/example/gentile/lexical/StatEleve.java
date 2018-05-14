@@ -25,6 +25,7 @@ import okhttp3.Response;
 public class StatEleve extends AppCompatActivity {
 
     String urlProgres = "http://lexical.hopto.org/lexical/res_prof.php";
+    //String urlProgres = "http://applichamplex.000webhostapp.com/lexical/res_prof.php";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

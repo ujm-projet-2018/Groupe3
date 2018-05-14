@@ -27,6 +27,8 @@ import okhttp3.Response;
 public class AjoutMot extends AppCompatActivity {
     String urlTestChamp = "http://lexical.hopto.org/lexical/test_champ.php";
     String urlAjoutChamp = "http://lexical.hopto.org/lexical/ajout_champ.php";
+    //String urlAjoutChamp = "http://applichamplex.000webhostapp.com/lexical/ajout_champ.php";
+    //String urlTestChamp = "http://applichamplex.000webhostapp.com/lexical/test_champ.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

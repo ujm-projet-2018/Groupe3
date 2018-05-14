@@ -22,6 +22,7 @@ import okhttp3.Response;
 
 public class InscriptionProf extends AppCompatActivity {
     String urlCoProf="http://lexical.hopto.org/lexical/connect.php";
+    //String urlCoProf="http://applichamplex.000webhostapp.com/lexical/connect.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

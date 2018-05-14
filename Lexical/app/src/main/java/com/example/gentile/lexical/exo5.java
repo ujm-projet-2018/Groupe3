@@ -38,6 +38,8 @@ public class exo5 extends AppCompatActivity {
     String nom;
     String scriptExo5 = "http://lexical.hopto.org/lexical/exo5.php";
     String scriptScore = "http://lexical.hopto.org/lexical/score1.php";
+    //String scriptExo5 = "http://applichamplex.000webhostapp.com/lexical/exo5.php";
+    //String scriptScore = "http://applichamplex.000webhostapp.com/lexical/score1.php";
     EditText rep1;
     TextView nom_champ1;
     TextView mot1;

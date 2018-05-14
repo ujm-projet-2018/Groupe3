@@ -20,9 +20,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class AjoutEleve extends AppCompatActivity {
+public class    AjoutEleve extends AppCompatActivity {
     String urlAjoutEleve = "http://lexical.hopto.org/lexical/ajout_eleve.php";
-
+  //String urlAjoutEleve = "http://applichamplex.000webhostapp.com/lexical/ajout_eleve.php";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

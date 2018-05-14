@@ -40,6 +40,9 @@ public class ConnectionEleve extends AppCompatActivity {
 
     String urlCoEleve = "http://lexical.hopto.org/lexical/connect.php";
     String etoile = "http://lexical.hopto.org/lexical/etoiles.php";
+    //String urlCoEleve = "http://applichamplex.000webhostapp.com/lexical/connect.php";
+   // String etoile = "http://applichamplex.000webhostapp.com/lexical/etoiles.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
