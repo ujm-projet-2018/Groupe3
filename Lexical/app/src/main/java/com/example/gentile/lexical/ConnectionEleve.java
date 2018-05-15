@@ -40,9 +40,6 @@ public class ConnectionEleve extends AppCompatActivity {
 
     String urlCoEleve = "http://lexical.hopto.org/lexical/connect.php";
     String etoile = "http://lexical.hopto.org/lexical/etoiles.php";
-    //String urlCoEleve = "http://applichamplex.000webhostapp.com/lexical/connect.php";
-   // String etoile = "http://applichamplex.000webhostapp.com/lexical/etoiles.php";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,10 +160,10 @@ public class ConnectionEleve extends AppCompatActivity {
                                                                         if (NbEtoileN4 < 5)
                                                                             intent = new Intent(ConnectionEleve.this, exo4.class);
                                                                         else {
-                                                                            if (NbEtoileN5 < 5)
+                                                                            if (NbEtoileN5 < 4)
                                                                                 intent = new Intent(ConnectionEleve.this, exo5.class);
                                                                             else {
-                                                                                if (NbEtoileN6 < 5)
+                                                                                if (NbEtoileN6 < 3)
                                                                                     intent = new Intent(ConnectionEleve.this, exo6.class);
                                                                                 else
                                                                                     intent = new Intent(ConnectionEleve.this, exo1.class);
